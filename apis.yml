@@ -1,0 +1,32 @@
+aid: fortnite
+name: Fortnite
+description: "Fortnite Stats"
+url: https://fortnitetracker.com/site-api
+specificationVersion: '0.20'
+created: '2026-05-28'
+modified: '2026-05-28'
+x-source: public-apis/public-apis
+x-category: "Games & Comics"
+x-tier: 3
+x-tier-reason: bulk-registered-from-public-apis
+tags:
+  - Games And Comics
+  - Public APIs
+apis:
+  - name: Fortnite
+    description: "Fortnite Stats"
+    humanURL: https://fortnitetracker.com/site-api
+    baseURL: https://fortnitetracker.com/site-api
+    tags:
+      - Games And Comics
+    properties:
+      - type: Documentation
+        url: https://fortnitetracker.com/site-api
+common:
+  - type: Website
+    url: https://fortnitetracker.com/site-api
+  - type: PublicAPIsListing
+    url: https://github.com/public-apis/public-apis
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
