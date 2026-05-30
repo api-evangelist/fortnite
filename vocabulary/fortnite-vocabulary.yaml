@@ -1,0 +1,260 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Fortnite Tracker"
+  description: >-
+    Unified vocabulary for the Fortnite Tracker API (api.fortnitetracker.com/v1)
+    spanning the operational REST surface and the Naftiko capability layer. One
+    API, five tags (Profile, Leaderboards, Power Rankings, Store, Challenges),
+    seven operations, ten domain entities, and five capability workflows.
+  created: "2026-05-30"
+  modified: "2026-05-30"
+
+operational:
+  apis:
+    - name: Fortnite Tracker API
+      namespace: fortnite-tracker
+      version: "1.0"
+      baseUrl: https://api.fortnitetracker.com/v1
+      status: active
+      notes: >-
+        Tracker Network publicly states the service is at silent end-of-life
+        but endpoints are still online for most consumers.
+
+  resources:
+    - name: profile
+      api: fortnite-tracker
+      description: Per-player Fortnite profile with lifetime + per-mode statistics.
+      actions: [get]
+    - name: leaderboard
+      api: fortnite-tracker
+      description: Top-player leaderboards by mode, platform, and stat window.
+      actions: [list]
+    - name: power-ranking
+      api: fortnite-tracker
+      description: Competitive professional power rankings.
+      actions: [list, get]
+    - name: store
+      api: fortnite-tracker
+      description: Current in-game store rotation (daily + weekly).
+      actions: [list]
+    - name: challenge
+      api: fortnite-tracker
+      description: Current Battle Pass weekly challenges.
+      actions: [list]
+
+  actions:
+    - name: get
+      verbs: [get]
+      methods: [GET]
+      pattern: read
+    - name: list
+      verbs: [list]
+      methods: [GET]
+      pattern: query
+
+  schemas:
+    player:
+      - PlayerProfile
+      - StatBlock
+      - StatValue
+      - StatLine
+      - MatchSummary
+    competitive:
+      - LeaderboardEntry
+      - PowerRankingEntry
+      - PowerRankingDetail
+    monetization:
+      - StoreItem
+    progression:
+      - Challenge
+    errors:
+      - Error
+
+  parameters:
+    pagination:
+      - page
+    identifiers:
+      - accountId
+      - epicNickname
+      - manifestId
+    filters:
+      - platform
+      - region
+      - mode
+      - window
+
+  enums:
+    platforms:
+      - pc
+      - xbl
+      - psn
+    modes:
+      - p2
+      - p10
+      - p9
+    regions:
+      - na-east
+      - na-west
+      - eu
+      - oce
+      - br
+      - asia
+      - me
+    storefronts:
+      - BRDailyStorefront
+      - BRWeeklyStorefront
+    rarities:
+      - Sturdy
+      - Fine
+      - Quality
+      - Handmade
+      - Epic
+      - Legendary
+    difficulties:
+      - easy
+      - medium
+      - hard
+      - extreme
+
+  authentication:
+    schemes:
+      - name: trnApiKey
+        type: apiKey
+        in: header
+        header: TRN-Api-Key
+        appliesTo: [fortnite-tracker]
+    flows: []
+    scopes: []
+
+capability:
+  workflows:
+    - name: Fortnite Tracker API — Profile
+      file: capabilities/fortnite-tracker-profile.yaml
+      apis: [fortnite-tracker]
+      toolCount: 2
+      personas: [community-developer, esports-analyst]
+      domains: [player-statistics]
+    - name: Fortnite Tracker API — Leaderboards
+      file: capabilities/fortnite-tracker-leaderboards.yaml
+      apis: [fortnite-tracker]
+      toolCount: 1
+      personas: [community-developer, esports-analyst]
+      domains: [player-statistics]
+    - name: Fortnite Tracker API — Power Rankings
+      file: capabilities/fortnite-tracker-power-rankings.yaml
+      apis: [fortnite-tracker]
+      toolCount: 2
+      personas: [esports-analyst, broadcast-producer]
+      domains: [esports]
+    - name: Fortnite Tracker API — Store
+      file: capabilities/fortnite-tracker-store.yaml
+      apis: [fortnite-tracker]
+      toolCount: 1
+      personas: [community-developer, cosmetics-collector]
+      domains: [cosmetics]
+    - name: Fortnite Tracker API — Challenges
+      file: capabilities/fortnite-tracker-challenges.yaml
+      apis: [fortnite-tracker]
+      toolCount: 1
+      personas: [community-developer, casual-player]
+      domains: [battle-pass]
+
+  personas:
+    - id: community-developer
+      name: Community Developer
+      description: >-
+        Builds Discord bots, stream overlays, or community websites on top of
+        Fortnite player data.
+      workflows: [profile, leaderboards, store, challenges]
+    - id: esports-analyst
+      name: Esports Analyst
+      description: >-
+        Tracks professional Fortnite competition for FNCS broadcasts, tournament
+        recaps, and pro-player scouting.
+      workflows: [profile, leaderboards, power-rankings]
+    - id: broadcast-producer
+      name: Broadcast Producer
+      description: >-
+        Drives live competitive broadcast graphics with power-ranking and
+        leaderboard data.
+      workflows: [power-rankings]
+    - id: cosmetics-collector
+      name: Cosmetics Collector
+      description: >-
+        Tracks store rotation to be alerted when specific returning skins or
+        items appear in the shop.
+      workflows: [store]
+    - id: casual-player
+      name: Casual Player
+      description: >-
+        Casual Fortnite player who wants to see the current weekly Battle Pass
+        challenges without launching the game.
+      workflows: [challenges]
+
+  domains:
+    - name: player-statistics
+      description: Profile, lifetime stats, per-mode breakdown, leaderboards.
+      resources: [profile, leaderboard]
+    - name: esports
+      description: Competitive professional Fortnite power rankings.
+      resources: [power-ranking]
+    - name: cosmetics
+      description: In-game store rotation and item rarity.
+      resources: [store]
+    - name: battle-pass
+      description: Weekly challenges and Battle Pass progression.
+      resources: [challenge]
+
+  namespaces:
+    - consumes: fortnite-tracker-profile
+      rest: fortnite-tracker-profile-rest
+      mcp: fortnite-tracker-profile-mcp
+      restPort: 8080
+      mcpPort: 9090
+    - consumes: fortnite-tracker-leaderboards
+      rest: fortnite-tracker-leaderboards-rest
+      mcp: fortnite-tracker-leaderboards-mcp
+      restPort: 8080
+      mcpPort: 9090
+    - consumes: fortnite-tracker-power-rankings
+      rest: fortnite-tracker-power-rankings-rest
+      mcp: fortnite-tracker-power-rankings-mcp
+      restPort: 8080
+      mcpPort: 9090
+    - consumes: fortnite-tracker-store
+      rest: fortnite-tracker-store-rest
+      mcp: fortnite-tracker-store-mcp
+      restPort: 8080
+      mcpPort: 9090
+    - consumes: fortnite-tracker-challenges
+      rest: fortnite-tracker-challenges-rest
+      mcp: fortnite-tracker-challenges-mcp
+      restPort: 8080
+      mcpPort: 9090
+
+  binds:
+    - env: TRN_API_KEY
+      usedBy: [profile, leaderboards, power-rankings, store, challenges]
+
+crossReference:
+  - resource: profile
+    operations: [getProfile, getProfileByAccountId]
+    workflows: [Fortnite Tracker API — Profile]
+    personas: [community-developer, esports-analyst]
+  - resource: leaderboard
+    operations: [listLeaderboard]
+    workflows: [Fortnite Tracker API — Leaderboards]
+    personas: [community-developer, esports-analyst]
+  - resource: power-ranking
+    operations: [listTopPowerRankings, getPlayerPowerRanking]
+    workflows: [Fortnite Tracker API — Power Rankings]
+    personas: [esports-analyst, broadcast-producer]
+  - resource: store
+    operations: [listStoreItems]
+    workflows: [Fortnite Tracker API — Store]
+    personas: [community-developer, cosmetics-collector]
+  - resource: challenge
+    operations: [listChallenges]
+    workflows: [Fortnite Tracker API — Challenges]
+    personas: [community-developer, casual-player]

@@ -1,0 +1,138 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "Fortnite Tracker API — Power Rankings"
+  description: >-
+    Power Rankings — Competitive Fortnite power rankings across professional
+    events. 2 operations. Lead operation: Fortnite Tracker List Top 500 Power
+    Rankings. Self-contained Naftiko capability covering one Fortnite Tracker
+    business surface.
+  tags:
+    - Fortnite Tracker
+    - Esports
+    - Power Rankings
+  created: "2026-05-30"
+  modified: "2026-05-30"
+
+binds:
+  - namespace: env
+    keys:
+      TRN_API_KEY: TRN_API_KEY
+
+capability:
+
+  consumes:
+    - type: http
+      namespace: "fortnite-tracker-power-rankings"
+      baseUri: "https://api.fortnitetracker.com/v1"
+      description: "Fortnite Tracker API — Power Rankings business capability. Self-contained, no shared references."
+      authentication:
+        type: apikey
+        key: TRN-Api-Key
+        value: "{{env.TRN_API_KEY}}"
+        placement: header
+      resources:
+        - name: "powerrankings-top500"
+          path: "/powerrankings/top500"
+          operations:
+            - name: "listTopPowerRankings"
+              method: GET
+              description: "Retrieve the top 500 ranked professional Fortnite players globally."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: "powerrankings-platform-region-epic-nickname"
+          path: "/powerrankings/{platform}/{region}/{epicNickname}"
+          operations:
+            - name: "getPlayerPowerRanking"
+              method: GET
+              description: "Retrieve the competitive power-ranking detail for a specific player."
+              inputParameters:
+                - name: "platform"
+                  in: path
+                  type: string
+                  required: true
+                  description: "Player platform (pc, xbl, psn)."
+                - name: "region"
+                  in: path
+                  type: string
+                  required: true
+                  description: "Competitive region (na-east, na-west, eu, oce, br, asia, me)."
+                - name: "epicNickname"
+                  in: path
+                  type: string
+                  required: true
+                  description: "Epic Games display name."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      namespace: "fortnite-tracker-power-rankings-rest"
+      port: 8080
+      description: "REST adapter for Fortnite Tracker API — Power Rankings."
+      resources:
+        - path: "/v1/power-rankings/top-500"
+          name: "top-power-rankings"
+          description: "REST surface for global top-500 power rankings."
+          operations:
+            - method: GET
+              name: "listTopPowerRankings"
+              description: "Retrieve the top 500 ranked professional players globally."
+              call: "fortnite-tracker-power-rankings.listTopPowerRankings"
+              with: {}
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: "/v1/power-rankings/{platform}/{region}/{epic-nickname}"
+          name: "player-power-ranking"
+          description: "REST surface for per-player competitive power-ranking detail."
+          operations:
+            - method: GET
+              name: "getPlayerPowerRanking"
+              description: "Retrieve the power-ranking detail for a specific player."
+              call: "fortnite-tracker-power-rankings.getPlayerPowerRanking"
+              with:
+                "platform": "rest.platform"
+                "region": "rest.region"
+                "epicNickname": "rest.epic-nickname"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      namespace: "fortnite-tracker-power-rankings-mcp"
+      port: 9090
+      transport: http
+      description: "MCP adapter for Fortnite Tracker API — Power Rankings."
+      tools:
+        - name: "list-top-power-rankings"
+          description: "Retrieve the top 500 ranked professional Fortnite players globally."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "fortnite-tracker-power-rankings.listTopPowerRankings"
+          with: {}
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: "get-player-power-ranking"
+          description: "Retrieve the competitive power-ranking detail for a specific player."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "fortnite-tracker-power-rankings.getPlayerPowerRanking"
+          with:
+            "platform": "tools.platform"
+            "region": "tools.region"
+            "epicNickname": "tools.epicNickname"
+          outputParameters:
+            - type: object
+              mapping: "$."

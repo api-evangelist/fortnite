@@ -1,0 +1,112 @@
+{
+  "trnRating": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  },
+  "score": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  },
+  "top1": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  },
+  "top3": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  },
+  "top5": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  },
+  "top10": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  },
+  "kd": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  },
+  "winRatio": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  },
+  "matches": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  },
+  "kills": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  },
+  "minutesPlayed": {
+    "label": "K/D",
+    "field": "kd",
+    "category": "Combat",
+    "valueInt": 12,
+    "value": "3.21",
+    "rank": "12345",
+    "percentile": 99.4,
+    "displayValue": "3.21"
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "label": "K/D",
+  "field": "kd",
+  "category": "Combat",
+  "valueInt": 12,
+  "value": "3.21",
+  "rank": "12345",
+  "percentile": 99.4,
+  "displayValue": "3.21"
+}

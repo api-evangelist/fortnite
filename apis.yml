@@ -1,32 +1,133 @@
 aid: fortnite
-name: Fortnite
-description: "Fortnite Stats"
+name: Fortnite Tracker
+description: >-
+  Fortnite Tracker, by Tracker Network, exposes a small REST API surface
+  (api.fortnitetracker.com/v1) covering player profile lifetime stats, regional
+  leaderboards, competitive power rankings, the rotating in-game store, and the
+  weekly challenges feed for Fortnite. Authentication is a single TRN-Api-Key
+  header obtained from the Fortnite Tracker site. The service has reached a
+  silent end-of-life in recent years (some endpoints are intermittently
+  unavailable) but remains the canonical community profile of how Tracker
+  Network packages Epic Games' Fortnite telemetry as a developer API.
 url: https://fortnitetracker.com/site-api
 specificationVersion: '0.20'
 created: '2026-05-28'
-modified: '2026-05-28'
+modified: '2026-05-30'
 x-source: public-apis/public-apis
-x-category: "Games & Comics"
+x-category: Games & Comics
+x-type: company
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
   - Games And Comics
   - Public APIs
+  - Fortnite
+  - Player Statistics
+  - Esports
+  - Tracker Network
 apis:
-  - name: Fortnite
-    description: "Fortnite Stats"
+  - name: Fortnite Tracker
+    description: >-
+      REST API exposing Fortnite player profiles, leaderboards, power rankings,
+      store rotation, and challenges. All endpoints live under
+      https://api.fortnitetracker.com/v1 and require a TRN-Api-Key header.
     humanURL: https://fortnitetracker.com/site-api
-    baseURL: https://fortnitetracker.com/site-api
+    baseURL: https://api.fortnitetracker.com/v1
     tags:
       - Games And Comics
+      - Fortnite
+      - Player Statistics
     properties:
       - type: Documentation
         url: https://fortnitetracker.com/site-api
+      - type: SignUp
+        url: https://fortnitetracker.com/site-api/create
+      - type: OpenAPI
+        url: openapi/fortnite-tracker.yaml
+      - type: NaftikoCapability
+        url: capabilities/fortnite-tracker-profile.yaml
+      - type: NaftikoCapability
+        url: capabilities/fortnite-tracker-leaderboards.yaml
+      - type: NaftikoCapability
+        url: capabilities/fortnite-tracker-power-rankings.yaml
+      - type: NaftikoCapability
+        url: capabilities/fortnite-tracker-store.yaml
+      - type: NaftikoCapability
+        url: capabilities/fortnite-tracker-challenges.yaml
 common:
   - type: Website
     url: https://fortnitetracker.com/site-api
   - type: PublicAPIsListing
     url: https://github.com/public-apis/public-apis
+  - type: GitHubOrganization
+    url: https://github.com/TrackerNetwork
+  - type: DeveloperPortal
+    url: https://tracker.gg/developers
+  - type: Plans
+    url: plans/fortnite-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/fortnite-rate-limits.yml
+  - type: FinOps
+    url: finops/fortnite-finops.yml
+  - type: Rules
+    url: rules/fortnite-spectral-rules.yml
+  - type: Vocabulary
+    url: vocabulary/fortnite-vocabulary.yaml
+  - type: JSONLD
+    url: json-ld/fortnite-tracker-context.jsonld
+features:
+  - name: Player Lifetime Stats
+    description: >-
+      Lifetime aggregate Battle Royale statistics (matches, wins, kills, K/D,
+      score) per platform and username.
+  - name: Regional Leaderboards
+    description: >-
+      Top players by platform and region across global, NA, EU, and OCE
+      cohorts.
+  - name: Power Rankings
+    description: >-
+      Competitive power rankings tracking professional Fortnite players' point
+      totals across events.
+  - name: Store Rotation
+    description: >-
+      Snapshot of the rotating in-game item shop (daily and weekly storefronts)
+      with prices in vBucks.
+  - name: Weekly Challenges
+    description: >-
+      Current Battle Pass weekly challenges list with completion criteria and
+      rewards.
+useCases:
+  - name: Competitive Esports Dashboards
+    description: >-
+      Aggregate professional player power-ranking standings into competitive
+      Fortnite leaderboard sites and event broadcast graphics.
+  - name: Player Profile Widgets
+    description: >-
+      Embed lifetime player stat cards into community sites, Discord bots, and
+      streaming overlays.
+  - name: Store Tracking Bots
+    description: >-
+      Poll the store endpoint on a schedule to notify players when specific
+      cosmetics or returning skins appear in the daily rotation.
+integrations:
+  - name: Epic Games Fortnite
+    description: >-
+      Upstream source of all player telemetry; Tracker Network ingests Epic's
+      player data and exposes a developer surface on top of it.
+  - name: Discord Bots
+    description: >-
+      Common consumer of the profile and store endpoints to render player
+      cards and shop rotations in Discord servers.
+  - name: Streaming Overlays
+    description: >-
+      OBS and Streamlabs overlay widgets pull live stats from the profile
+      endpoint during Fortnite streams.
+solutions:
+  - name: Tracker Network Site Family
+    description: >-
+      fortnitetracker.com is one of several Tracker Network properties
+      (overwatch.tracker.gg, apex.tracker.gg, valorant.tracker.gg) that wrap
+      game-publisher telemetry behind a uniform TRN-Api-Key surface.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

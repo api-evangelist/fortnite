@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortnite/refs/heads/main/json-structure/fortnite-tracker-power-ranking-entry-structure.json",
+  "name": "PowerRankingEntry",
+  "description": "A single competitive power-ranking row.",
+  "type": "object",
+  "properties": {
+    "rank": {
+      "type": "int32",
+      "description": "Global rank position.",
+      "example": 1
+    },
+    "country": {
+      "type": "string",
+      "description": "ISO 3166-1 alpha-2 country code.",
+      "example": "US"
+    },
+    "platform": {
+      "type": "string",
+      "description": "Player platform (`pc`, `xbl`, `psn`).",
+      "example": "pc"
+    },
+    "region": {
+      "type": "string",
+      "description": "Competitive region code.",
+      "example": "na-east"
+    },
+    "epicNickname": {
+      "type": "string",
+      "description": "Player Epic Games display name.",
+      "example": "Bugha"
+    },
+    "points": {
+      "type": "float",
+      "description": "Power-ranking points total.",
+      "example": 12500.5
+    },
+    "earnings": {
+      "type": "string",
+      "description": "Tournament earnings as a display string (USD).",
+      "example": "$3,000,000"
+    },
+    "twitchUrl": {
+      "type": "uri",
+      "description": "Twitch channel URL for the player when known.",
+      "example": "https://twitch.tv/bugha"
+    }
+  }
+}

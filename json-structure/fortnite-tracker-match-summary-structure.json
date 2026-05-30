@@ -1,0 +1,79 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortnite/refs/heads/main/json-structure/fortnite-tracker-match-summary-structure.json",
+  "name": "MatchSummary",
+  "description": "Summary of a recent match.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Match identifier.",
+      "example": 500123
+    },
+    "accountId": {
+      "type": "uuid",
+      "description": "Account UUID this match belongs to.",
+      "example": "4735ce91-3292-4caf-8a5b-17789b40f79c"
+    },
+    "playlist": {
+      "type": "string",
+      "description": "Playlist mode key (e.g., `p2`, `p10`, `p9`).",
+      "example": "p9"
+    },
+    "kills": {
+      "type": "int32",
+      "description": "Kills in this match.",
+      "example": 8
+    },
+    "minutesPlayed": {
+      "type": "int32",
+      "description": "Minutes played in this match.",
+      "example": 22
+    },
+    "top1": {
+      "type": "int32",
+      "description": "Number of",
+      "example": 1
+    },
+    "top5": {
+      "type": "int32",
+      "description": "Number of top-5 placements in this match group.",
+      "example": 1
+    },
+    "top6": {
+      "type": "int32",
+      "description": "Number of top-6 placements in this match group.",
+      "example": 1
+    },
+    "top10": {
+      "type": "int32",
+      "description": "Number of top-10 placements in this match group.",
+      "example": 1
+    },
+    "top12": {
+      "type": "int32",
+      "description": "Number of top-12 placements in this match group.",
+      "example": 1
+    },
+    "top25": {
+      "type": "int32",
+      "description": "Number of top-25 placements in this match group.",
+      "example": 1
+    },
+    "matches": {
+      "type": "int32",
+      "description": "Matches in this aggregation group.",
+      "example": 1
+    },
+    "score": {
+      "type": "int32",
+      "description": "Score points earned.",
+      "example": 1820
+    },
+    "dateCollected": {
+      "type": "datetime",
+      "description": "Timestamp the match summary was recorded.",
+      "example": "2026-05-29T18:42:11Z"
+    }
+  }
+}

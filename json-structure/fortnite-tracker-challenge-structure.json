@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortnite/refs/heads/main/json-structure/fortnite-tracker-challenge-structure.json",
+  "name": "Challenge",
+  "description": "A single Battle Pass weekly challenge.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "int32",
+      "description": "Challenge identifier.",
+      "example": 500123
+    },
+    "name": {
+      "type": "string",
+      "description": "Challenge display name.",
+      "example": "Deal damage with shotguns to opponents"
+    },
+    "description": {
+      "type": "string",
+      "description": "Long-form challenge description.",
+      "example": "Deal 1,000 damage to opponents using shotguns."
+    },
+    "completionGoal": {
+      "type": "int32",
+      "description": "Target value required to complete the challenge.",
+      "example": 1000
+    },
+    "rewardStars": {
+      "type": "int32",
+      "description": "Number of Battle Pass stars awarded on completion.",
+      "example": 5
+    },
+    "difficulty": {
+      "type": "string",
+      "description": "Challenge difficulty tier.",
+      "enum": [
+        "easy",
+        "medium",
+        "hard",
+        "extreme"
+      ],
+      "example": "medium"
+    },
+    "week": {
+      "type": "int32",
+      "description": "Battle Pass week number.",
+      "example": 6
+    },
+    "season": {
+      "type": "string",
+      "description": "Battle Pass season identifier.",
+      "example": "c5s4"
+    }
+  }
+}

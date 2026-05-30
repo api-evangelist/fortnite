@@ -1,0 +1,445 @@
+# Fortnite Tracker Spectral Ruleset
+#
+# Enforces the conventions observed in the Fortnite Tracker API
+# (api.fortnitetracker.com/v1) profile. Single-version, /v1-prefixed REST
+# surface with kebab-case paths, camelCase operationIds, lowercase enum tokens,
+# TRN-Api-Key header auth, and tight tag groupings (Profile, Leaderboards,
+# Power Rankings, Store, Challenges).
+#
+# Rule names are kebab-cased and grouped by category prefix:
+#   info-*, paths-*, operation-*, parameter-*, response-*, schema-*, security-*, tag-*
+#
+extends: "spectral:oas"
+
+rules:
+
+  # ────────────────────────────────────────────────────────────────
+  # INFO / METADATA
+  # ────────────────────────────────────────────────────────────────
+
+  info-title-fortnite-tracker-prefix:
+    description: "info.title must start with 'Fortnite Tracker'."
+    message: "{{property}} should start with 'Fortnite Tracker'."
+    severity: warn
+    given: "$.info.title"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Fortnite Tracker"
+
+  info-description-required:
+    description: "info.description is required and must be at least 80 characters."
+    severity: error
+    given: "$.info"
+    then:
+      field: description
+      function: length
+      functionOptions:
+        min: 80
+
+  info-version-required:
+    description: "info.version is required."
+    severity: error
+    given: "$.info"
+    then:
+      field: version
+      function: truthy
+
+  info-contact-required:
+    description: "info.contact should be present so consumers know where to reach support."
+    severity: warn
+    given: "$.info"
+    then:
+      field: contact
+      function: truthy
+
+  info-license-required:
+    description: "info.license should be present (Tracker Network Terms of Service)."
+    severity: warn
+    given: "$.info"
+    then:
+      field: license
+      function: truthy
+
+  # ────────────────────────────────────────────────────────────────
+  # OPENAPI VERSION
+  # ────────────────────────────────────────────────────────────────
+
+  openapi-version-3:
+    description: "Spec must be OpenAPI 3.x."
+    severity: error
+    given: "$.openapi"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^3\\."
+
+  # ────────────────────────────────────────────────────────────────
+  # SERVERS
+  # ────────────────────────────────────────────────────────────────
+
+  servers-defined:
+    description: "servers must be defined."
+    severity: error
+    given: "$"
+    then:
+      field: servers
+      function: truthy
+
+  servers-https-only:
+    description: "All server URLs must use HTTPS."
+    severity: error
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^https://"
+
+  servers-fortnite-tracker-host:
+    description: "Primary server should be api.fortnitetracker.com."
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "api\\.fortnitetracker\\.com"
+
+  servers-v1-prefix:
+    description: "Server URL must end in /v1 — Fortnite Tracker only ships a v1 surface."
+    severity: warn
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: "/v1$"
+
+  # ────────────────────────────────────────────────────────────────
+  # PATHS — NAMING CONVENTIONS
+  # ────────────────────────────────────────────────────────────────
+
+  paths-kebab-case:
+    description: "Path segments must be lowercase kebab-case (alphanumerics, hyphens, path params)."
+    severity: warn
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(/[a-z0-9-]+|/\\{[a-zA-Z0-9]+\\})+$"
+
+  paths-no-trailing-slash:
+    description: "Paths must not have trailing slashes."
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "/$"
+
+  paths-no-query-string:
+    description: "Paths must not include query strings."
+    severity: error
+    given: "$.paths[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        notMatch: "\\?"
+
+  # ────────────────────────────────────────────────────────────────
+  # OPERATIONS
+  # ────────────────────────────────────────────────────────────────
+
+  operation-summary-required:
+    description: "Every operation must have a summary."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: summary
+      function: truthy
+
+  operation-description-required:
+    description: "Every operation must have a description."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: description
+      function: truthy
+
+  operation-summary-fortnite-tracker-prefix:
+    description: "Operation summary should start with 'Fortnite Tracker '."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^Fortnite Tracker "
+
+  operation-operationid-required:
+    description: "Every operation must have an operationId."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: operationId
+      function: truthy
+
+  operation-operationid-camel-case:
+    description: "operationId must be camelCase (verb-noun)."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]+$"
+
+  operation-operationid-verb-prefix:
+    description: "operationId should start with a known verb (get, list, create, update, delete)."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].operationId"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^(get|list|create|update|delete)"
+
+  operation-tags-required:
+    description: "Every operation must have at least one tag."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: tags
+      function: truthy
+
+  operation-microcks-extension:
+    description: "Every operation should have an x-microcks-operation extension for mock-server compatibility."
+    severity: info
+    given: "$.paths[*][get,post,put,patch,delete]"
+    then:
+      field: x-microcks-operation
+      function: truthy
+
+  # ────────────────────────────────────────────────────────────────
+  # TAGS
+  # ────────────────────────────────────────────────────────────────
+
+  tags-global-defined:
+    description: "Global tags array must be defined."
+    severity: warn
+    given: "$"
+    then:
+      field: tags
+      function: truthy
+
+  tags-description-required:
+    description: "Every global tag must have a description."
+    severity: warn
+    given: "$.tags[*]"
+    then:
+      field: description
+      function: truthy
+
+  tags-title-case:
+    description: "Tag names should be in Title Case (e.g., 'Power Rankings', 'Store')."
+    severity: warn
+    given: "$.tags[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z0-9]+( [A-Z][a-zA-Z0-9]+)*$"
+
+  # ────────────────────────────────────────────────────────────────
+  # PARAMETERS
+  # ────────────────────────────────────────────────────────────────
+
+  parameter-description-required:
+    description: "Every parameter must have a description."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: description
+      function: truthy
+
+  parameter-schema-required:
+    description: "Every parameter must have a schema."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: schema
+      function: truthy
+
+  parameter-camel-case:
+    description: "Parameter names must be camelCase."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*].name"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  parameter-example-encouraged:
+    description: "Parameters should include an example value."
+    severity: info
+    given: "$.paths[*][get,post,put,patch,delete].parameters[*]"
+    then:
+      field: example
+      function: truthy
+
+  # ────────────────────────────────────────────────────────────────
+  # RESPONSES
+  # ────────────────────────────────────────────────────────────────
+
+  response-200-required:
+    description: "GET endpoints must define a 200 response."
+    severity: error
+    given: "$.paths[*].get.responses"
+    then:
+      field: '200'
+      function: truthy
+
+  response-401-required:
+    description: "All operations must define a 401 response (TRN-Api-Key required)."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: '401'
+      function: truthy
+
+  response-429-required:
+    description: "All operations should define a 429 response (rate limiting)."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses"
+    then:
+      field: '429'
+      function: truthy
+
+  response-description-required:
+    description: "Every response must have a description."
+    severity: error
+    given: "$.paths[*][get,post,put,patch,delete].responses[*]"
+    then:
+      field: description
+      function: truthy
+
+  response-json-content-type:
+    description: "Responses should serve application/json."
+    severity: warn
+    given: "$.paths[*][get,post,put,patch,delete].responses[*].content"
+    then:
+      field: application/json
+      function: truthy
+
+  response-error-schema-fields:
+    description: "Error response schemas must include error and message fields."
+    severity: warn
+    given: "$.components.schemas.Error.properties"
+    then:
+      field: message
+      function: truthy
+
+  # ────────────────────────────────────────────────────────────────
+  # SCHEMAS — PROPERTY NAMING
+  # ────────────────────────────────────────────────────────────────
+
+  schema-property-camel-case:
+    description: "Schema property names must be camelCase to match Tracker Network's wire format."
+    severity: warn
+    given: "$.components.schemas[*].properties[*]~"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[a-z][a-zA-Z0-9]*$"
+
+  schema-top-level-description:
+    description: "Top-level schemas must have a description."
+    severity: warn
+    given: "$.components.schemas[*]"
+    then:
+      field: description
+      function: truthy
+
+  schema-type-required:
+    description: "Top-level schemas must declare a type."
+    severity: warn
+    given: "$.components.schemas[*]"
+    then:
+      field: type
+      function: truthy
+
+  # ────────────────────────────────────────────────────────────────
+  # SECURITY
+  # ────────────────────────────────────────────────────────────────
+
+  security-global-defined:
+    description: "Global security must be defined (TRN-Api-Key required on every call)."
+    severity: error
+    given: "$"
+    then:
+      field: security
+      function: truthy
+
+  security-scheme-defined:
+    description: "components.securitySchemes must declare the trnApiKey scheme."
+    severity: error
+    given: "$.components.securitySchemes"
+    then:
+      field: trnApiKey
+      function: truthy
+
+  security-trn-api-key-header:
+    description: "TRN-Api-Key must be defined as an apiKey security scheme in the header."
+    severity: error
+    given: "$.components.securitySchemes.trnApiKey"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          required:
+            - type
+            - in
+            - name
+          properties:
+            type:
+              const: apiKey
+            in:
+              const: header
+            name:
+              const: TRN-Api-Key
+
+  # ────────────────────────────────────────────────────────────────
+  # HTTP METHOD CONVENTIONS
+  # ────────────────────────────────────────────────────────────────
+
+  method-get-no-request-body:
+    description: "GET operations must not declare a requestBody."
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: requestBody
+      function: falsy
+
+  method-delete-no-request-body:
+    description: "DELETE operations must not declare a requestBody."
+    severity: error
+    given: "$.paths[*].delete"
+    then:
+      field: requestBody
+      function: falsy
+
+  # ────────────────────────────────────────────────────────────────
+  # GENERAL QUALITY
+  # ────────────────────────────────────────────────────────────────
+
+  no-empty-description:
+    description: "Description fields must not be empty strings."
+    severity: warn
+    given: "$..description"
+    then:
+      function: length
+      functionOptions:
+        min: 1
+
+  external-docs-encouraged:
+    description: "Spec should reference external docs (fortnitetracker.com/site-api)."
+    severity: info
+    given: "$"
+    then:
+      field: externalDocs
+      function: truthy

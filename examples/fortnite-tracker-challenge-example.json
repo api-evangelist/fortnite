@@ -1,0 +1,10 @@
+{
+  "id": 500123,
+  "name": "Deal damage with shotguns to opponents",
+  "description": "Deal 1,000 damage to opponents using shotguns.",
+  "completionGoal": 1000,
+  "rewardStars": 5,
+  "difficulty": "medium",
+  "week": 6,
+  "season": "c5s4"
+}

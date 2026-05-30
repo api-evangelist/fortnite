@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortnite/refs/heads/main/json-schema/fortnite-tracker-power-ranking-detail-schema.json",
+  "title": "PowerRankingDetail",
+  "description": "PowerRankingDetail schema from Fortnite Tracker API",
+  "allOf": [
+    {
+      "type": "object",
+      "description": "A single competitive power-ranking row.",
+      "properties": {
+        "rank": {
+          "type": "integer",
+          "description": "Global rank position.",
+          "example": 1
+        },
+        "country": {
+          "type": "string",
+          "description": "ISO 3166-1 alpha-2 country code.",
+          "example": "US"
+        },
+        "platform": {
+          "type": "string",
+          "description": "Player platform (`pc`, `xbl`, `psn`).",
+          "example": "pc"
+        },
+        "region": {
+          "type": "string",
+          "description": "Competitive region code.",
+          "example": "na-east"
+        },
+        "epicNickname": {
+          "type": "string",
+          "description": "Player Epic Games display name.",
+          "example": "Bugha"
+        },
+        "points": {
+          "type": "number",
+          "format": "float",
+          "description": "Power-ranking points total.",
+          "example": 12500.5
+        },
+        "earnings": {
+          "type": "string",
+          "description": "Tournament earnings as a display string (USD).",
+          "example": "$3,000,000"
+        },
+        "twitchUrl": {
+          "type": "string",
+          "format": "uri",
+          "description": "Twitch channel URL for the player when known.",
+          "example": "https://twitch.tv/bugha"
+        }
+      }
+    },
+    {
+      "type": "object",
+      "description": "Power ranking entry with event-level breakdown.",
+      "properties": {
+        "events": {
+          "type": "array",
+          "description": "List of qualifying tournament events.",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Tournament name.",
+                "example": "FNCS Chapter 5 Season 2 Finals"
+              },
+              "date": {
+                "type": "string",
+                "format": "date",
+                "description": "Event date.",
+                "example": "2026-04-12"
+              },
+              "points": {
+                "type": "number",
+                "format": "float",
+                "description": "Power-ranking points awarded.",
+                "example": 1500
+              },
+              "placement": {
+                "type": "integer",
+                "description": "Final placement at the event.",
+                "example": 3
+              }
+            }
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortnite/refs/heads/main/json-schema/fortnite-tracker-match-summary-schema.json",
+  "title": "MatchSummary",
+  "description": "Summary of a recent match.",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "integer",
+      "description": "Match identifier.",
+      "example": 500123
+    },
+    "accountId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Account UUID this match belongs to.",
+      "example": "4735ce91-3292-4caf-8a5b-17789b40f79c"
+    },
+    "playlist": {
+      "type": "string",
+      "description": "Playlist mode key (e.g., `p2`, `p10`, `p9`).",
+      "example": "p9"
+    },
+    "kills": {
+      "type": "integer",
+      "description": "Kills in this match.",
+      "example": 8
+    },
+    "minutesPlayed": {
+      "type": "integer",
+      "description": "Minutes played in this match.",
+      "example": 22
+    },
+    "top1": {
+      "type": "integer",
+      "description": "Number of",
+      "example": 1
+    },
+    "top5": {
+      "type": "integer",
+      "description": "Number of top-5 placements in this match group.",
+      "example": 1
+    },
+    "top6": {
+      "type": "integer",
+      "description": "Number of top-6 placements in this match group.",
+      "example": 1
+    },
+    "top10": {
+      "type": "integer",
+      "description": "Number of top-10 placements in this match group.",
+      "example": 1
+    },
+    "top12": {
+      "type": "integer",
+      "description": "Number of top-12 placements in this match group.",
+      "example": 1
+    },
+    "top25": {
+      "type": "integer",
+      "description": "Number of top-25 placements in this match group.",
+      "example": 1
+    },
+    "matches": {
+      "type": "integer",
+      "description": "Matches in this aggregation group.",
+      "example": 1
+    },
+    "score": {
+      "type": "integer",
+      "description": "Score points earned.",
+      "example": 1820
+    },
+    "dateCollected": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Timestamp the match summary was recorded.",
+      "example": "2026-05-29T18:42:11Z"
+    }
+  }
+}

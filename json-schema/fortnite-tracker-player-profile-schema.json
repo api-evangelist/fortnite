@@ -1,0 +1,669 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortnite/refs/heads/main/json-schema/fortnite-tracker-player-profile-schema.json",
+  "title": "PlayerProfile",
+  "description": "Fortnite player profile with lifetime and per-mode statistics.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Epic Games account UUID.",
+      "example": "4735ce91-3292-4caf-8a5b-17789b40f79c"
+    },
+    "platformId": {
+      "type": "integer",
+      "description": "Numeric platform identifier (5 = PC/Epic, 1 = PSN, 2 = Xbox Live).",
+      "example": 5
+    },
+    "platformName": {
+      "type": "string",
+      "description": "Platform short code (`pc`, `psn`, `xbl`).",
+      "example": "pc"
+    },
+    "platformNameLong": {
+      "type": "string",
+      "description": "Human-readable platform name.",
+      "example": "PC / Epic Games"
+    },
+    "epicUserHandle": {
+      "type": "string",
+      "description": "Epic Games display name.",
+      "example": "Ninja"
+    },
+    "stats": {
+      "type": "object",
+      "description": "Per-mode stat blocks keyed by mode identifier.",
+      "additionalProperties": {
+        "type": "object",
+        "description": "A grouped stat block for a single mode (e.g., solo, duo, squad).",
+        "properties": {
+          "trnRating": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          },
+          "score": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          },
+          "top1": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          },
+          "top3": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          },
+          "top5": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          },
+          "top10": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          },
+          "kd": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          },
+          "winRatio": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          },
+          "matches": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          },
+          "kills": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          },
+          "minutesPlayed": {
+            "type": "object",
+            "description": "A single stat value with display formatting and numeric value.",
+            "properties": {
+              "label": {
+                "type": "string",
+                "description": "Human label for the stat.",
+                "example": "K/D"
+              },
+              "field": {
+                "type": "string",
+                "description": "Internal field identifier.",
+                "example": "kd"
+              },
+              "category": {
+                "type": "string",
+                "description": "Stat category (e.g., `Game`, `Combat`).",
+                "example": "Combat"
+              },
+              "valueInt": {
+                "type": "integer",
+                "description": "Integer representation of the value where applicable.",
+                "example": 12
+              },
+              "value": {
+                "type": "string",
+                "description": "Display value as a string.",
+                "example": "3.21"
+              },
+              "rank": {
+                "type": "string",
+                "description": "Global rank for this stat.",
+                "example": "12345"
+              },
+              "percentile": {
+                "type": "number",
+                "format": "float",
+                "description": "Percentile rank (0-100).",
+                "example": 99.4
+              },
+              "displayValue": {
+                "type": "string",
+                "description": "Pre-formatted display value.",
+                "example": "3.21"
+              }
+            }
+          }
+        }
+      }
+    },
+    "lifeTimeStats": {
+      "type": "array",
+      "description": "Lifetime statistic key/value pairs.",
+      "items": {
+        "type": "object",
+        "description": "A single lifetime stat key/value pair.",
+        "properties": {
+          "key": {
+            "type": "string",
+            "description": "Stat key (e.g., `Wins`, `Top 10`, `Kills`).",
+            "example": "Wins"
+          },
+          "value": {
+            "type": "string",
+            "description": "Stat value as a string.",
+            "example": "247"
+          }
+        }
+      }
+    },
+    "recentMatches": {
+      "type": "array",
+      "description": "Recent match summary entries.",
+      "items": {
+        "type": "object",
+        "description": "Summary of a recent match.",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Match identifier.",
+            "example": 500123
+          },
+          "accountId": {
+            "type": "string",
+            "format": "uuid",
+            "description": "Account UUID this match belongs to.",
+            "example": "4735ce91-3292-4caf-8a5b-17789b40f79c"
+          },
+          "playlist": {
+            "type": "string",
+            "description": "Playlist mode key (e.g., `p2`, `p10`, `p9`).",
+            "example": "p9"
+          },
+          "kills": {
+            "type": "integer",
+            "description": "Kills in this match.",
+            "example": 8
+          },
+          "minutesPlayed": {
+            "type": "integer",
+            "description": "Minutes played in this match.",
+            "example": 22
+          },
+          "top1": {
+            "type": "integer",
+            "description": "Number of",
+            "example": 1
+          },
+          "top5": {
+            "type": "integer",
+            "description": "Number of top-5 placements in this match group.",
+            "example": 1
+          },
+          "top6": {
+            "type": "integer",
+            "description": "Number of top-6 placements in this match group.",
+            "example": 1
+          },
+          "top10": {
+            "type": "integer",
+            "description": "Number of top-10 placements in this match group.",
+            "example": 1
+          },
+          "top12": {
+            "type": "integer",
+            "description": "Number of top-12 placements in this match group.",
+            "example": 1
+          },
+          "top25": {
+            "type": "integer",
+            "description": "Number of top-25 placements in this match group.",
+            "example": 1
+          },
+          "matches": {
+            "type": "integer",
+            "description": "Matches in this aggregation group.",
+            "example": 1
+          },
+          "score": {
+            "type": "integer",
+            "description": "Score points earned.",
+            "example": 1820
+          },
+          "dateCollected": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Timestamp the match summary was recorded.",
+            "example": "2026-05-29T18:42:11Z"
+          }
+        }
+      }
+    }
+  },
+  "required": [
+    "accountId",
+    "epicUserHandle",
+    "platformName"
+  ]
+}

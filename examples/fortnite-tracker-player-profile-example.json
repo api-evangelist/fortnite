@@ -1,0 +1,32 @@
+{
+  "accountId": "4735ce91-3292-4caf-8a5b-17789b40f79c",
+  "platformId": 5,
+  "platformName": "pc",
+  "platformNameLong": "PC / Epic Games",
+  "epicUserHandle": "Ninja",
+  "stats": {},
+  "lifeTimeStats": [
+    {
+      "key": "Wins",
+      "value": "247"
+    }
+  ],
+  "recentMatches": [
+    {
+      "id": 500123,
+      "accountId": "4735ce91-3292-4caf-8a5b-17789b40f79c",
+      "playlist": "p9",
+      "kills": 8,
+      "minutesPlayed": 22,
+      "top1": 1,
+      "top5": 1,
+      "top6": 1,
+      "top10": 1,
+      "top12": 1,
+      "top25": 1,
+      "matches": 1,
+      "score": 1820,
+      "dateCollected": "2026-05-29T18:42:11Z"
+    }
+  ]
+}

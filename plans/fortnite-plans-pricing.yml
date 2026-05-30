@@ -1,0 +1,82 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Fortnite Tracker
+providerId: fortnite
+created: '2026-05-30'
+modified: '2026-05-30'
+reconciled: false
+tags:
+  - Games And Comics
+  - Fortnite
+  - Player Statistics
+  - Esports
+  - Free Tier
+description: >-
+  Fortnite Tracker offers a single free, key-gated tier of access to
+  api.fortnitetracker.com/v1. There is no published pricing page, no paid plan,
+  and no subscription product. Access requires creating an account at
+  fortnitetracker.com/site-api/create to mint a TRN-Api-Key. The default rate
+  limit is approximately one request every two seconds per key. Higher rate
+  limits are negotiated case-by-case by contacting Tracker Network support; that
+  uplift is itself free but not commercially documented. Because the underlying
+  service has been in silent end-of-life for several years, this plan profile is
+  expected to remain static.
+sources:
+  - https://fortnitetracker.com/site-api
+  - https://fortnitetracker.com/site-api/create
+plans:
+  - id: fortnite-free
+    name: Free
+    type: freemium
+    description: >-
+      Free, key-gated public API access. Default rate limit ~1 req / 2s per key.
+    entries:
+      - label: API Requests
+        name: api_requests
+        type: metered
+        metric: request
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: '$0'
+        userMultiplied: false
+      - label: Request Rate Cap
+        name: request_rate_cap
+        type: quota
+        metric: request
+        limit: 1
+        timeFrame: second
+        geo: global
+        unit: 2
+        price: '$0'
+        userMultiplied: false
+    elements:
+      - name: Player profile statistics
+      - name: Regional leaderboards
+      - name: Competitive power rankings
+      - name: In-game store rotation
+      - name: Weekly Battle Pass challenges
+      - name: TRN-Api-Key authentication
+  - id: fortnite-rate-limit-uplift
+    name: Rate Limit Uplift
+    type: enterprise
+    description: >-
+      Negotiated rate-limit increase obtained by contacting Tracker Network
+      support. Pricing is not published; uplift has historically been free for
+      reasonable use cases but is granted at Tracker Network's discretion.
+    entries:
+      - label: Custom Rate Limit
+        name: custom_rate_limit
+        type: tiered
+        metric: request
+        limit: -1
+        timeFrame: second
+        geo: global
+        unit: 1
+        price: contact sales
+        userMultiplied: false
+    elements:
+      - name: Negotiated higher per-second rate limit
+      - name: Direct contact with Tracker Network support

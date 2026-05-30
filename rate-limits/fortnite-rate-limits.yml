@@ -1,0 +1,65 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Fortnite Tracker
+providerId: fortnite
+created: '2026-05-30'
+modified: '2026-05-30'
+reconciled: false
+tags:
+  - Rate Limiting
+  - Games And Comics
+  - Fortnite
+  - Player Statistics
+description: >-
+  Fortnite Tracker enforces a per-key rate limit of approximately one request
+  every two seconds (i.e. 0.5 requests per second) against
+  api.fortnitetracker.com/v1. Limits are scoped to the TRN-Api-Key issued from
+  fortnitetracker.com/site-api/create — anonymous requests are rejected before
+  rate-limit accounting. There is no separate sandbox/test mode. Higher limits
+  can be requested by contacting Tracker Network support, but the uplift
+  process is informal and not commercially documented. The service has stated
+  "we reserve the right to ban you" — consumers exceeding the documented limit
+  should expect 429 responses and eventual key revocation.
+sources:
+  - https://fortnitetracker.com/site-api
+  - https://publicapis.io/fortnite-tracker-api
+responseCodes:
+  throttled: 429
+  unauthorized: 401
+limits:
+  - name: Default per-key rate limit
+    scope: key
+    metric: requests_per_second
+    limit: 0.5
+    timeFrame: second
+    notes: >-
+      One request per two seconds per TRN-Api-Key. Documented on the Fortnite
+      Tracker site-api landing page.
+  - name: Negotiated uplift
+    scope: key
+    metric: varies
+    limit: 'see Tracker Network support — granted ad hoc, not publicly documented'
+    notes: >-
+      Tracker Network historically grants higher limits to legitimate
+      consumers on request. Contact support@tracker.gg or use the feedback
+      site.
+policies:
+  - name: Key-scoped enforcement
+    description: >-
+      All limits attach to the TRN-Api-Key header. Sharing a key across
+      consumers will cause requests to collide at the limit boundary.
+  - name: Hard rejection at limit
+    description: >-
+      Requests beyond the documented 1 req / 2s rate return HTTP 429. There is
+      no documented soft-burst allowance.
+  - name: Discretionary key revocation
+    description: >-
+      The site-api landing page explicitly notes the right to ban abusive keys.
+      Repeated 429s or scraping behavior can result in key revocation without
+      notice.
+  - name: Backoff guidance
+    description: >-
+      Consumers should implement exponential backoff with jitter on 429
+      responses. There are no documented Retry-After headers — fall back to a
+      fixed 2-second delay between retries.

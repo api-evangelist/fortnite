@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortnite/refs/heads/main/json-structure/fortnite-tracker-stat-line-structure.json",
+  "name": "StatLine",
+  "description": "A single lifetime stat key/value pair.",
+  "type": "object",
+  "properties": {
+    "key": {
+      "type": "string",
+      "description": "Stat key (e.g., `Wins`, `Top 10`, `Kills`).",
+      "example": "Wins"
+    },
+    "value": {
+      "type": "string",
+      "description": "Stat value as a string.",
+      "example": "247"
+    }
+  }
+}

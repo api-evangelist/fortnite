@@ -1,0 +1,81 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "Fortnite Tracker API — Store"
+  description: >-
+    Store — Current Fortnite in-game store rotation. 1 operation. Lead
+    operation: Fortnite Tracker List Store Items. Self-contained Naftiko
+    capability covering one Fortnite Tracker business surface.
+  tags:
+    - Fortnite Tracker
+    - Cosmetics
+    - Store
+  created: "2026-05-30"
+  modified: "2026-05-30"
+
+binds:
+  - namespace: env
+    keys:
+      TRN_API_KEY: TRN_API_KEY
+
+capability:
+
+  consumes:
+    - type: http
+      namespace: "fortnite-tracker-store"
+      baseUri: "https://api.fortnitetracker.com/v1"
+      description: "Fortnite Tracker API — Store business capability. Self-contained, no shared references."
+      authentication:
+        type: apikey
+        key: TRN-Api-Key
+        value: "{{env.TRN_API_KEY}}"
+        placement: header
+      resources:
+        - name: "store"
+          path: "/store"
+          operations:
+            - name: "listStoreItems"
+              method: GET
+              description: "Retrieve the current Fortnite in-game store rotation (daily and weekly storefronts)."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      namespace: "fortnite-tracker-store-rest"
+      port: 8080
+      description: "REST adapter for Fortnite Tracker API — Store."
+      resources:
+        - path: "/v1/store"
+          name: "store"
+          description: "REST surface for the current in-game store rotation."
+          operations:
+            - method: GET
+              name: "listStoreItems"
+              description: "Retrieve the current Fortnite store rotation."
+              call: "fortnite-tracker-store.listStoreItems"
+              with: {}
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      namespace: "fortnite-tracker-store-mcp"
+      port: 9090
+      transport: http
+      description: "MCP adapter for Fortnite Tracker API — Store."
+      tools:
+        - name: "list-store-items"
+          description: "Retrieve the current Fortnite in-game store rotation (daily and weekly storefronts)."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "fortnite-tracker-store.listStoreItems"
+          with: {}
+          outputParameters:
+            - type: object
+              mapping: "$."

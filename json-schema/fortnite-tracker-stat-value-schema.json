@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortnite/refs/heads/main/json-schema/fortnite-tracker-stat-value-schema.json",
+  "title": "StatValue",
+  "description": "A single stat value with display formatting and numeric value.",
+  "type": "object",
+  "properties": {
+    "label": {
+      "type": "string",
+      "description": "Human label for the stat.",
+      "example": "K/D"
+    },
+    "field": {
+      "type": "string",
+      "description": "Internal field identifier.",
+      "example": "kd"
+    },
+    "category": {
+      "type": "string",
+      "description": "Stat category (e.g., `Game`, `Combat`).",
+      "example": "Combat"
+    },
+    "valueInt": {
+      "type": "integer",
+      "description": "Integer representation of the value where applicable.",
+      "example": 12
+    },
+    "value": {
+      "type": "string",
+      "description": "Display value as a string.",
+      "example": "3.21"
+    },
+    "rank": {
+      "type": "string",
+      "description": "Global rank for this stat.",
+      "example": "12345"
+    },
+    "percentile": {
+      "type": "number",
+      "format": "float",
+      "description": "Percentile rank (0-100).",
+      "example": 99.4
+    },
+    "displayValue": {
+      "type": "string",
+      "description": "Pre-formatted display value.",
+      "example": "3.21"
+    }
+  }
+}

@@ -1,0 +1,110 @@
+naftiko: "1.0.0-alpha2"
+
+info:
+  label: "Fortnite Tracker API — Leaderboards"
+  description: >-
+    Leaderboards — Top-player leaderboards by platform and region. 1 operation.
+    Lead operation: Fortnite Tracker List Leaderboard. Self-contained Naftiko
+    capability covering one Fortnite Tracker business surface.
+  tags:
+    - Fortnite Tracker
+    - Player Statistics
+    - Leaderboards
+  created: "2026-05-30"
+  modified: "2026-05-30"
+
+binds:
+  - namespace: env
+    keys:
+      TRN_API_KEY: TRN_API_KEY
+
+capability:
+
+  consumes:
+    - type: http
+      namespace: "fortnite-tracker-leaderboards"
+      baseUri: "https://api.fortnitetracker.com/v1"
+      description: "Fortnite Tracker API — Leaderboards business capability. Self-contained, no shared references."
+      authentication:
+        type: apikey
+        key: TRN-Api-Key
+        value: "{{env.TRN_API_KEY}}"
+        placement: header
+      resources:
+        - name: "leaderboards-mode-platform-window"
+          path: "/leaderboards/{mode}/{platform}/{window}"
+          operations:
+            - name: "listLeaderboard"
+              method: GET
+              description: "Retrieve a paginated leaderboard for a given mode, platform, and time window."
+              inputParameters:
+                - name: "mode"
+                  in: path
+                  type: string
+                  required: true
+                  description: "Game mode: p2 (solo), p10 (duo), p9 (squad)."
+                - name: "platform"
+                  in: path
+                  type: string
+                  required: true
+                  description: "Player platform (pc, xbl, psn)."
+                - name: "window"
+                  in: path
+                  type: string
+                  required: true
+                  description: "Statistic and time window (current_wins, lifetime_kills, etc.)."
+                - name: "page"
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Zero-based page index."
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      namespace: "fortnite-tracker-leaderboards-rest"
+      port: 8080
+      description: "REST adapter for Fortnite Tracker API — Leaderboards."
+      resources:
+        - path: "/v1/leaderboards/{mode}/{platform}/{window}"
+          name: "leaderboards"
+          description: "REST surface for top-player leaderboards."
+          operations:
+            - method: GET
+              name: "listLeaderboard"
+              description: "Retrieve a leaderboard page."
+              call: "fortnite-tracker-leaderboards.listLeaderboard"
+              with:
+                "mode": "rest.mode"
+                "platform": "rest.platform"
+                "window": "rest.window"
+                "page": "rest.page"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      namespace: "fortnite-tracker-leaderboards-mcp"
+      port: 9090
+      transport: http
+      description: "MCP adapter for Fortnite Tracker API — Leaderboards."
+      tools:
+        - name: "list-leaderboard"
+          description: "Retrieve a paginated leaderboard for a given mode, platform, and time window."
+          hints:
+            readOnly: true
+            destructive: false
+            idempotent: true
+          call: "fortnite-tracker-leaderboards.listLeaderboard"
+          with:
+            "mode": "tools.mode"
+            "platform": "tools.platform"
+            "window": "tools.window"
+            "page": "tools.page"
+          outputParameters:
+            - type: object
+              mapping: "$."

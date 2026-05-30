@@ -1,0 +1,57 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortnite/refs/heads/main/json-structure/fortnite-tracker-store-item-structure.json",
+  "name": "StoreItem",
+  "description": "A single rotation item in the Fortnite in-game store.",
+  "type": "object",
+  "properties": {
+    "imageUrl": {
+      "type": "uri",
+      "description": "URL to the item's promotional image asset.",
+      "example": "https://trackercdn.com/cdn/fortnitetracker.com/items/abc123.png"
+    },
+    "manifestId": {
+      "type": "int32",
+      "description": "Stable numeric identifier for the item across rotations.",
+      "example": 500123
+    },
+    "name": {
+      "type": "string",
+      "description": "Display name of the cosmetic.",
+      "example": "Renegade Raider"
+    },
+    "rarity": {
+      "type": "string",
+      "description": "Item rarity tier. Common values include `Sturdy`, `Fine`, `Quality`, `Handmade`, `Epic`, `Legendary`.",
+      "enum": [
+        "Sturdy",
+        "Fine",
+        "Quality",
+        "Handmade",
+        "Epic",
+        "Legendary"
+      ],
+      "example": "Legendary"
+    },
+    "storeCategory": {
+      "type": "string",
+      "description": "Storefront the item appears in.",
+      "enum": [
+        "BRDailyStorefront",
+        "BRWeeklyStorefront"
+      ],
+      "example": "BRWeeklyStorefront"
+    },
+    "vBucks": {
+      "type": "int32",
+      "description": "Cost of the item in vBucks (Fortnite's in-game currency).",
+      "example": 1500
+    }
+  },
+  "required": [
+    "manifestId",
+    "name",
+    "vBucks",
+    "storeCategory"
+  ]
+}

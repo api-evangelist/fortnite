@@ -1,0 +1,242 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "ft": "https://fortnitetracker.com/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "Challenge": "ft:Challenge",
+    "LeaderboardEntry": "ft:LeaderboardEntry",
+    "MatchSummary": "ft:MatchSummary",
+    "PlayerProfile": "ft:PlayerProfile",
+    "PowerRankingEntry": "ft:PowerRankingEntry",
+    "StatBlock": "ft:StatBlock",
+    "StatLine": "ft:StatLine",
+    "StatValue": "ft:StatValue",
+    "StoreItem": "ft:StoreItem",
+    "accountId": {
+      "@id": "ft:account_id",
+      "@type": "xsd:string"
+    },
+    "category": {
+      "@id": "ft:category",
+      "@type": "xsd:string"
+    },
+    "completionGoal": {
+      "@id": "ft:completion_goal",
+      "@type": "xsd:integer"
+    },
+    "country": {
+      "@id": "schema:addressCountry",
+      "@type": "xsd:string"
+    },
+    "date": {
+      "@id": "ft:date",
+      "@type": "xsd:date"
+    },
+    "dateCollected": {
+      "@id": "ft:date_collected",
+      "@type": "xsd:dateTime"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "difficulty": {
+      "@id": "ft:difficulty",
+      "@type": "xsd:string"
+    },
+    "displayValue": {
+      "@id": "ft:display_value",
+      "@type": "xsd:string"
+    },
+    "earnings": {
+      "@id": "ft:earnings",
+      "@type": "xsd:string"
+    },
+    "epicNickname": {
+      "@id": "ft:epic_nickname",
+      "@type": "xsd:string"
+    },
+    "epicUserHandle": {
+      "@id": "ft:epic_user_handle",
+      "@type": "xsd:string"
+    },
+    "events": {
+      "@id": "ft:events",
+      "@container": "@set"
+    },
+    "field": {
+      "@id": "ft:field",
+      "@type": "xsd:string"
+    },
+    "id": {
+      "@id": "ft:id",
+      "@type": "xsd:integer"
+    },
+    "imageUrl": {
+      "@id": "schema:image",
+      "@type": "@id"
+    },
+    "kd": {
+      "@id": "ft:kd",
+      "@type": "@id"
+    },
+    "key": {
+      "@id": "ft:key",
+      "@type": "xsd:string"
+    },
+    "kills": {
+      "@id": "ft:kills",
+      "@type": "xsd:integer"
+    },
+    "label": {
+      "@id": "ft:label",
+      "@type": "xsd:string"
+    },
+    "lifeTimeStats": {
+      "@id": "ft:life_time_stats",
+      "@container": "@set"
+    },
+    "manifestId": {
+      "@id": "ft:manifest_id",
+      "@type": "xsd:integer"
+    },
+    "matches": {
+      "@id": "ft:matches",
+      "@type": "xsd:integer"
+    },
+    "minutesPlayed": {
+      "@id": "ft:minutes_played",
+      "@type": "xsd:integer"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "percentile": {
+      "@id": "ft:percentile",
+      "@type": "xsd:float"
+    },
+    "placement": {
+      "@id": "ft:placement",
+      "@type": "xsd:integer"
+    },
+    "platform": {
+      "@id": "ft:platform",
+      "@type": "xsd:string"
+    },
+    "platformId": {
+      "@id": "ft:platform_id",
+      "@type": "xsd:integer"
+    },
+    "platformName": {
+      "@id": "ft:platform_name",
+      "@type": "xsd:string"
+    },
+    "platformNameLong": {
+      "@id": "ft:platform_name_long",
+      "@type": "xsd:string"
+    },
+    "playlist": {
+      "@id": "ft:playlist",
+      "@type": "xsd:string"
+    },
+    "points": {
+      "@id": "ft:points",
+      "@type": "xsd:float"
+    },
+    "rank": {
+      "@id": "ft:rank",
+      "@type": "xsd:integer"
+    },
+    "rarity": {
+      "@id": "ft:rarity",
+      "@type": "xsd:string"
+    },
+    "recentMatches": {
+      "@id": "ft:recent_matches",
+      "@container": "@set"
+    },
+    "region": {
+      "@id": "ft:region",
+      "@type": "xsd:string"
+    },
+    "rewardStars": {
+      "@id": "ft:reward_stars",
+      "@type": "xsd:integer"
+    },
+    "score": {
+      "@id": "ft:score",
+      "@type": "xsd:integer"
+    },
+    "season": {
+      "@id": "ft:season",
+      "@type": "xsd:string"
+    },
+    "stats": {
+      "@id": "ft:stats",
+      "@type": "@id"
+    },
+    "storeCategory": {
+      "@id": "ft:store_category",
+      "@type": "xsd:string"
+    },
+    "top1": {
+      "@id": "ft:top1",
+      "@type": "xsd:integer"
+    },
+    "top10": {
+      "@id": "ft:top10",
+      "@type": "xsd:integer"
+    },
+    "top12": {
+      "@id": "ft:top12",
+      "@type": "xsd:integer"
+    },
+    "top25": {
+      "@id": "ft:top25",
+      "@type": "xsd:integer"
+    },
+    "top3": {
+      "@id": "ft:top3",
+      "@type": "@id"
+    },
+    "top5": {
+      "@id": "ft:top5",
+      "@type": "xsd:integer"
+    },
+    "top6": {
+      "@id": "ft:top6",
+      "@type": "xsd:integer"
+    },
+    "trnRating": {
+      "@id": "ft:trn_rating",
+      "@type": "@id"
+    },
+    "twitchUrl": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "vBucks": {
+      "@id": "ft:v_bucks",
+      "@type": "xsd:integer"
+    },
+    "value": {
+      "@id": "ft:value",
+      "@type": "xsd:string"
+    },
+    "valueInt": {
+      "@id": "ft:value_int",
+      "@type": "xsd:integer"
+    },
+    "week": {
+      "@id": "ft:week",
+      "@type": "xsd:integer"
+    },
+    "winRatio": {
+      "@id": "ft:win_ratio",
+      "@type": "@id"
+    }
+  }
+}

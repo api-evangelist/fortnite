@@ -1,0 +1,86 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Fortnite Tracker
+providerId: fortnite
+created: '2026-05-30'
+modified: '2026-05-30'
+reconciled: false
+tags:
+  - FinOps
+  - FOCUS
+  - Games And Comics
+  - Fortnite
+  - Free Tier
+description: >-
+  FOCUS-aligned FinOps profile for the Fortnite Tracker API: a single free,
+  key-gated developer surface with no commercial billing surface. Cost
+  attribution is purely about rate-limit headroom rather than dollar spend.
+sources:
+  - https://fortnitetracker.com/site-api
+  - https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Tracker Network
+serviceCategory: Games And Comics
+billingModel:
+  pricingCategory: Free Tier
+  billingFrequency: None
+  billingCurrency: USD
+  chargeCategories:
+    - Usage
+focusColumns:
+  ServiceName: Fortnite Tracker API
+  ServiceCategory: Games And Comics
+  ServiceSubcategory: Player Statistics
+  ProviderName: Tracker Network
+  PublisherName: Tracker Network
+  InvoiceIssuerName: Tracker Network
+  BillingCurrency: USD
+  ChargeCategory: Usage
+meters:
+  - name: api_requests
+    unit: request
+    aggregation: sum
+    dimensions:
+      - endpoint
+      - status_code
+      - api_key
+  - name: rate_limit_consumed
+    unit: request
+    aggregation: sum
+    dimensions:
+      - api_key
+      - window_seconds
+  - name: rate_limit_rejected
+    unit: request
+    aggregation: count
+    dimensions:
+      - api_key
+      - endpoint
+principles:
+  - name: Visibility
+    description: >-
+      Fortnite Tracker exposes no usage API or dashboard. Consumers must
+      self-instrument: log every TRN-Api-Key request, response code, and
+      latency client-side to understand consumption.
+  - name: Allocation
+    description: >-
+      Allocate consumption per-team or per-product by minting one TRN-Api-Key
+      per logical workload from fortnitetracker.com/site-api/create rather
+      than sharing keys. Tag client-side metrics with the workload name.
+  - name: Optimization
+    description: >-
+      Cache profile, leaderboard, and store responses aggressively (most data
+      changes on minute-to-hour cadence, not per-request). Coalesce
+      duplicate lookups, and respect the 1-request-per-2-second per-key cap.
+      Don't poll the store more often than the daily rotation window.
+  - name: Accountability
+    description: >-
+      Owner of the TRN-Api-Key is responsible for the workload's behavior.
+      Tracker Network reserves the right to revoke abusive keys, so the same
+      owner should monitor 429 rates and stay within the documented limit.

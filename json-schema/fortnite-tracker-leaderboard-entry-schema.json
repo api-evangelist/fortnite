@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/fortnite/refs/heads/main/json-schema/fortnite-tracker-leaderboard-entry-schema.json",
+  "title": "LeaderboardEntry",
+  "description": "A single leaderboard ranking row.",
+  "type": "object",
+  "properties": {
+    "accountId": {
+      "type": "string",
+      "format": "uuid",
+      "description": "Epic Games account UUID for the leaderboard entry.",
+      "example": "4735ce91-3292-4caf-8a5b-17789b40f79c"
+    },
+    "platformId": {
+      "type": "integer",
+      "description": "Numeric platform identifier.",
+      "example": 5
+    },
+    "platformName": {
+      "type": "string",
+      "description": "Platform short code.",
+      "example": "pc"
+    },
+    "epicUserHandle": {
+      "type": "string",
+      "description": "Player display name.",
+      "example": "Bugha"
+    },
+    "rank": {
+      "type": "integer",
+      "description": "Rank position on the leaderboard.",
+      "example": 12
+    },
+    "value": {
+      "type": "string",
+      "description": "Display value of the stat being ranked.",
+      "example": "247"
+    }
+  }
+}
