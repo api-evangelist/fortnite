@@ -40,19 +40,19 @@ apis:
     properties:
       - type: Documentation
         url: https://fortnitetracker.com/site-api
-      - type: SignUp
+      - type: Signup
         url: https://fortnitetracker.com/site-api/create
       - type: OpenAPI
         url: openapi/fortnite-tracker.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/fortnite-tracker-profile.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/fortnite-tracker-leaderboards.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/fortnite-tracker-power-rankings.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/fortnite-tracker-store.yaml
-      - type: NaftikoCapability
+      - type: X-NaftikoCapability
         url: capabilities/fortnite-tracker-challenges.yaml
 common:
   - type: Website
