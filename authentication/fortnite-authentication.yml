@@ -1,0 +1,18 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/fortnite-tracker.yaml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: trnApiKey
+  type: apiKey
+  in: header
+  parameter: TRN-Api-Key
+  description: Per-account API key issued from https://fortnitetracker.com/site-api/create.
+    Pass as the `TRN-Api-Key` request header. Default rate limit is approximately one request
+    per two seconds per key.
+  sources:
+  - openapi/fortnite-tracker.yaml

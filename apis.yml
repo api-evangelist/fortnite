@@ -55,6 +55,10 @@ apis:
       - type: X-NaftikoCapability
         url: capabilities/fortnite-tracker-challenges.yaml
 common:
+  - type: DomainSecurity
+    url: security/fortnite-domain-security.yml
+  - type: Authentication
+    url: authentication/fortnite-authentication.yml
   - type: Website
     url: https://fortnitetracker.com/site-api
   - type: PublicAPIsListing

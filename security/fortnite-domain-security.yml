@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: probed
+source: live DNS/TLS/HTTP probes of apis.yml + OpenAPI hosts
+hosts:
+- host: fortnitetracker.com
+  https: true
+  tls_version: TLSv1.3
+  cert_expires: Aug 21 10:39:23 2026 GMT
+  hsts: null
+- host: api.fortnitetracker.com
+  https: false
+domains:
+- domain: fortnitetracker.com
+  dnssec: false
+  caa:
+  - 0 issue "comodoca.com"
+  - 0 issue "digicert.com; cansignhttpexchanges=yes"
+  - 0 issue "letsencrypt.org"
+  - 0 issue "pki.goog; cansignhttpexchanges=yes"
+  - 0 issue "ssl.com"
+  - 0 issuewild "comodoca.com"
+  spf: true
+  dmarc: true
+  dmarc_policy: reject
