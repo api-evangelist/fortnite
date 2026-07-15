@@ -1,0 +1,84 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/fortnite-tracker.yaml
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 7
+  by_action_class:
+    connected: 7
+  by_consequence:
+    read: 7
+  human_in_the_loop_required: 0
+operations:
+- path: /profile/{platform}/{epicNickname}
+  method: get
+  operationId: getProfile
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /profile/account/{accountId}
+  method: get
+  operationId: getProfileByAccountId
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /leaderboards/{mode}/{platform}/{window}
+  method: get
+  operationId: listLeaderboard
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /powerrankings/top500
+  method: get
+  operationId: listTopPowerRankings
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /powerrankings/{platform}/{region}/{epicNickname}
+  method: get
+  operationId: getPlayerPowerRanking
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /store
+  method: get
+  operationId: listStoreItems
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /challenges
+  method: get
+  operationId: listChallenges
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
