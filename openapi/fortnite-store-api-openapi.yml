@@ -1,0 +1,148 @@
+openapi: 3.0.3
+info:
+  title: Fortnite Tracker Challenges Store API
+  version: '1.0'
+  description: Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.
+  contact:
+    name: Tracker Network Support
+    url: https://feedback.tracker.gg/
+  license:
+    name: Tracker Network Terms of Service
+    url: https://tracker.gg/about/terms
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://api.fortnitetracker.com/v1
+  description: Fortnite Tracker production API
+security:
+- trnApiKey: []
+tags:
+- name: Store
+  description: Current Fortnite in-game store rotation.
+paths:
+  /store:
+    get:
+      operationId: listStoreItems
+      summary: Fortnite Tracker List Store Items
+      description: Retrieve the current Fortnite in-game store rotation, including both the daily storefront and the weekly featured storefront with vBucks prices and rarity tiers.
+      tags:
+      - Store
+      responses:
+        '200':
+          description: Store rotation retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/StoreItem'
+              examples:
+                ListStoreItems200Example:
+                  summary: Default listStoreItems 200 response
+                  x-microcks-default: true
+                  value:
+                  - imageUrl: https://trackercdn.com/cdn/fortnitetracker.com/items/renegade.png
+                    manifestId: 500123
+                    name: Renegade Raider
+                    rarity: Legendary
+                    storeCategory: BRWeeklyStorefront
+                    vBucks: 1500
+                  - imageUrl: https://trackercdn.com/cdn/fortnitetracker.com/items/skull-trooper.png
+                    manifestId: 500124
+                    name: Skull Trooper
+                    rarity: Epic
+                    storeCategory: BRDailyStorefront
+                    vBucks: 1200
+        '401':
+          description: Missing or invalid TRN-Api-Key header.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListStoreItems401Example:
+                  summary: Default listStoreItems 401 response
+                  x-microcks-default: true
+                  value:
+                    error: unauthorized
+                    message: Missing or invalid TRN-Api-Key header.
+        '429':
+          description: Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListStoreItems429Example:
+                  summary: Default listStoreItems 429 response
+                  x-microcks-default: true
+                  value:
+                    error: rate_limited
+                    message: Rate limit exceeded.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Error:
+      type: object
+      description: Standard error response body.
+      properties:
+        error:
+          type: string
+          description: Short machine-readable error code.
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Missing or invalid TRN-Api-Key header.
+    StoreItem:
+      type: object
+      description: A single rotation item in the Fortnite in-game store.
+      properties:
+        imageUrl:
+          type: string
+          format: uri
+          description: URL to the item's promotional image asset.
+          example: https://trackercdn.com/cdn/fortnitetracker.com/items/abc123.png
+        manifestId:
+          type: integer
+          description: Stable numeric identifier for the item across rotations.
+          example: 500123
+        name:
+          type: string
+          description: Display name of the cosmetic.
+          example: Renegade Raider
+        rarity:
+          type: string
+          description: Item rarity tier. Common values include `Sturdy`, `Fine`, `Quality`, `Handmade`, `Epic`, `Legendary`.
+          enum:
+          - Sturdy
+          - Fine
+          - Quality
+          - Handmade
+          - Epic
+          - Legendary
+          example: Legendary
+        storeCategory:
+          type: string
+          description: Storefront the item appears in.
+          enum:
+          - BRDailyStorefront
+          - BRWeeklyStorefront
+          example: BRWeeklyStorefront
+        vBucks:
+          type: integer
+          description: Cost of the item in vBucks (Fortnite's in-game currency).
+          example: 1500
+      required:
+      - manifestId
+      - name
+      - vBucks
+      - storeCategory
+  securitySchemes:
+    trnApiKey:
+      type: apiKey
+      in: header
+      name: TRN-Api-Key
+      description: Per-account API key issued from https://fortnitetracker.com/site-api/create. Pass as the `TRN-Api-Key` request header. Default rate limit is approximately one request per two seconds per key.

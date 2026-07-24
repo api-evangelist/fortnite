@@ -1,0 +1,439 @@
+openapi: 3.0.3
+info:
+  title: Fortnite Tracker Challenges Profile API
+  version: '1.0'
+  description: Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.
+  contact:
+    name: Tracker Network Support
+    url: https://feedback.tracker.gg/
+  license:
+    name: Tracker Network Terms of Service
+    url: https://tracker.gg/about/terms
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://api.fortnitetracker.com/v1
+  description: Fortnite Tracker production API
+security:
+- trnApiKey: []
+tags:
+- name: Profile
+  description: Per-player Fortnite lifetime and per-mode statistics.
+paths:
+  /profile/{platform}/{epicNickname}:
+    get:
+      operationId: getProfile
+      summary: Fortnite Tracker Get Player Profile
+      description: Retrieve a player's Fortnite profile with lifetime statistics, per-mode stats (solo, duo, squad), and account metadata for the given platform and Epic Games display name.
+      tags:
+      - Profile
+      parameters:
+      - name: platform
+        in: path
+        required: true
+        description: Player platform. One of `pc` (Epic Games on PC), `xbl` (Xbox Live), `psn` (PlayStation Network).
+        schema:
+          type: string
+          enum:
+          - pc
+          - xbl
+          - psn
+        example: pc
+      - name: epicNickname
+        in: path
+        required: true
+        description: Epic Games account display name for the player.
+        schema:
+          type: string
+        example: Ninja
+      responses:
+        '200':
+          description: Player profile retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerProfile'
+              examples:
+                GetProfile200Example:
+                  summary: Default getProfile 200 response
+                  x-microcks-default: true
+                  value:
+                    accountId: 4735ce91-3292-4caf-8a5b-17789b40f79c
+                    platformId: 5
+                    platformName: pc
+                    platformNameLong: PC / Epic Games
+                    epicUserHandle: Ninja
+                    stats:
+                      p9:
+                        kd:
+                          label: K/D
+                          field: kd
+                          category: Combat
+                          valueInt: 3
+                          value: '3.21'
+                          rank: '12345'
+                          percentile: 99.4
+                          displayValue: '3.21'
+                        score:
+                          label: Score
+                          field: score
+                          category: Game
+                          valueInt: 182000
+                          value: '182000'
+                          rank: '8721'
+                          percentile: 99.8
+                          displayValue: 182,000
+                        matches:
+                          label: Matches
+                          field: matches
+                          category: Game
+                          valueInt: 5421
+                          value: '5421'
+                          rank: '1872'
+                          percentile: 99.9
+                          displayValue: 5,421
+                    lifeTimeStats:
+                    - key: Wins
+                      value: '247'
+                    - key: Top 10
+                      value: '1820'
+                    - key: Kills
+                      value: '17421'
+                    recentMatches:
+                    - id: 500123
+                      accountId: 4735ce91-3292-4caf-8a5b-17789b40f79c
+                      playlist: p9
+                      kills: 8
+                      minutesPlayed: 22
+                      top1: 1
+                      top5: 1
+                      top6: 1
+                      top10: 1
+                      top12: 1
+                      top25: 1
+                      matches: 1
+                      score: 1820
+                      dateCollected: '2026-05-29T18:42:11Z'
+        '401':
+          description: Missing or invalid TRN-Api-Key header.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetProfile401Example:
+                  summary: Default getProfile 401 response
+                  x-microcks-default: true
+                  value:
+                    error: unauthorized
+                    message: Missing or invalid TRN-Api-Key header.
+        '404':
+          description: Player not found on the given platform.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetProfile404Example:
+                  summary: Default getProfile 404 response
+                  x-microcks-default: true
+                  value:
+                    error: not_found
+                    message: Player not found on platform pc.
+        '429':
+          description: Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetProfile429Example:
+                  summary: Default getProfile 429 response
+                  x-microcks-default: true
+                  value:
+                    error: rate_limited
+                    message: Rate limit exceeded. Default is 1 request per 2 seconds.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /profile/account/{accountId}:
+    get:
+      operationId: getProfileByAccountId
+      summary: Fortnite Tracker Get Player Profile by Account Id
+      description: Retrieve a player's Fortnite profile by Epic Games account UUID instead of display name. Useful for stable lookups when display names change.
+      tags:
+      - Profile
+      parameters:
+      - name: accountId
+        in: path
+        required: true
+        description: Epic Games account UUID.
+        schema:
+          type: string
+          format: uuid
+        example: 4735ce91-3292-4caf-8a5b-17789b40f79c
+      responses:
+        '200':
+          description: Player profile retrieved.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlayerProfile'
+              examples:
+                GetProfileByAccountId200Example:
+                  summary: Default getProfileByAccountId 200 response
+                  x-microcks-default: true
+                  value:
+                    accountId: 4735ce91-3292-4caf-8a5b-17789b40f79c
+                    platformId: 5
+                    platformName: pc
+                    platformNameLong: PC / Epic Games
+                    epicUserHandle: Ninja
+                    stats: {}
+                    lifeTimeStats:
+                    - key: Wins
+                      value: '247'
+                    recentMatches: []
+        '401':
+          description: Missing or invalid TRN-Api-Key header.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetProfileByAccountId401Example:
+                  summary: Default getProfileByAccountId 401 response
+                  x-microcks-default: true
+                  value:
+                    error: unauthorized
+                    message: Missing or invalid TRN-Api-Key header.
+        '404':
+          description: Account not found.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetProfileByAccountId404Example:
+                  summary: Default getProfileByAccountId 404 response
+                  x-microcks-default: true
+                  value:
+                    error: not_found
+                    message: Account 4735ce91-3292-4caf-8a5b-17789b40f79c not found.
+        '429':
+          description: Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                GetProfileByAccountId429Example:
+                  summary: Default getProfileByAccountId 429 response
+                  x-microcks-default: true
+                  value:
+                    error: rate_limited
+                    message: Rate limit exceeded.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    StatBlock:
+      type: object
+      description: A grouped stat block for a single mode (e.g., solo, duo, squad).
+      properties:
+        trnRating:
+          $ref: '#/components/schemas/StatValue'
+        score:
+          $ref: '#/components/schemas/StatValue'
+        top1:
+          $ref: '#/components/schemas/StatValue'
+        top3:
+          $ref: '#/components/schemas/StatValue'
+        top5:
+          $ref: '#/components/schemas/StatValue'
+        top10:
+          $ref: '#/components/schemas/StatValue'
+        kd:
+          $ref: '#/components/schemas/StatValue'
+        winRatio:
+          $ref: '#/components/schemas/StatValue'
+        matches:
+          $ref: '#/components/schemas/StatValue'
+        kills:
+          $ref: '#/components/schemas/StatValue'
+        minutesPlayed:
+          $ref: '#/components/schemas/StatValue'
+    MatchSummary:
+      type: object
+      description: Summary of a recent match.
+      properties:
+        id:
+          type: integer
+          description: Match identifier.
+          example: 500123
+        accountId:
+          type: string
+          format: uuid
+          description: Account UUID this match belongs to.
+          example: 4735ce91-3292-4caf-8a5b-17789b40f79c
+        playlist:
+          type: string
+          description: Playlist mode key (e.g., `p2`, `p10`, `p9`).
+          example: p9
+        kills:
+          type: integer
+          description: Kills in this match.
+          example: 8
+        minutesPlayed:
+          type: integer
+          description: Minutes played in this match.
+          example: 22
+        top1:
+          type: integer
+          description: Number of
+          example: 1
+        top5:
+          type: integer
+          description: Number of top-5 placements in this match group.
+          example: 1
+        top6:
+          type: integer
+          description: Number of top-6 placements in this match group.
+          example: 1
+        top10:
+          type: integer
+          description: Number of top-10 placements in this match group.
+          example: 1
+        top12:
+          type: integer
+          description: Number of top-12 placements in this match group.
+          example: 1
+        top25:
+          type: integer
+          description: Number of top-25 placements in this match group.
+          example: 1
+        matches:
+          type: integer
+          description: Matches in this aggregation group.
+          example: 1
+        score:
+          type: integer
+          description: Score points earned.
+          example: 1820
+        dateCollected:
+          type: string
+          format: date-time
+          description: Timestamp the match summary was recorded.
+          example: '2026-05-29T18:42:11Z'
+    PlayerProfile:
+      type: object
+      description: Fortnite player profile with lifetime and per-mode statistics.
+      properties:
+        accountId:
+          type: string
+          format: uuid
+          description: Epic Games account UUID.
+          example: 4735ce91-3292-4caf-8a5b-17789b40f79c
+        platformId:
+          type: integer
+          description: Numeric platform identifier (5 = PC/Epic, 1 = PSN, 2 = Xbox Live).
+          example: 5
+        platformName:
+          type: string
+          description: Platform short code (`pc`, `psn`, `xbl`).
+          example: pc
+        platformNameLong:
+          type: string
+          description: Human-readable platform name.
+          example: PC / Epic Games
+        epicUserHandle:
+          type: string
+          description: Epic Games display name.
+          example: Ninja
+        stats:
+          type: object
+          description: Per-mode stat blocks keyed by mode identifier.
+          additionalProperties:
+            $ref: '#/components/schemas/StatBlock'
+        lifeTimeStats:
+          type: array
+          description: Lifetime statistic key/value pairs.
+          items:
+            $ref: '#/components/schemas/StatLine'
+        recentMatches:
+          type: array
+          description: Recent match summary entries.
+          items:
+            $ref: '#/components/schemas/MatchSummary'
+      required:
+      - accountId
+      - epicUserHandle
+      - platformName
+    Error:
+      type: object
+      description: Standard error response body.
+      properties:
+        error:
+          type: string
+          description: Short machine-readable error code.
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Missing or invalid TRN-Api-Key header.
+    StatLine:
+      type: object
+      description: A single lifetime stat key/value pair.
+      properties:
+        key:
+          type: string
+          description: Stat key (e.g., `Wins`, `Top 10`, `Kills`).
+          example: Wins
+        value:
+          type: string
+          description: Stat value as a string.
+          example: '247'
+    StatValue:
+      type: object
+      description: A single stat value with display formatting and numeric value.
+      properties:
+        label:
+          type: string
+          description: Human label for the stat.
+          example: K/D
+        field:
+          type: string
+          description: Internal field identifier.
+          example: kd
+        category:
+          type: string
+          description: Stat category (e.g., `Game`, `Combat`).
+          example: Combat
+        valueInt:
+          type: integer
+          description: Integer representation of the value where applicable.
+          example: 12
+        value:
+          type: string
+          description: Display value as a string.
+          example: '3.21'
+        rank:
+          type: string
+          description: Global rank for this stat.
+          example: '12345'
+        percentile:
+          type: number
+          format: float
+          description: Percentile rank (0-100).
+          example: 99.4
+        displayValue:
+          type: string
+          description: Pre-formatted display value.
+          example: '3.21'
+  securitySchemes:
+    trnApiKey:
+      type: apiKey
+      in: header
+      name: TRN-Api-Key
+      description: Per-account API key issued from https://fortnitetracker.com/site-api/create. Pass as the `TRN-Api-Key` request header. Default rate limit is approximately one request per two seconds per key.

@@ -1,0 +1,172 @@
+openapi: 3.0.3
+info:
+  title: Fortnite Tracker Challenges Leaderboards API
+  version: '1.0'
+  description: Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.
+  contact:
+    name: Tracker Network Support
+    url: https://feedback.tracker.gg/
+  license:
+    name: Tracker Network Terms of Service
+    url: https://tracker.gg/about/terms
+  x-generated-from: documentation
+  x-last-validated: '2026-05-30'
+servers:
+- url: https://api.fortnitetracker.com/v1
+  description: Fortnite Tracker production API
+security:
+- trnApiKey: []
+tags:
+- name: Leaderboards
+  description: Top-player leaderboards by platform and region.
+paths:
+  /leaderboards/{mode}/{platform}/{window}:
+    get:
+      operationId: listLeaderboard
+      summary: Fortnite Tracker List Leaderboard
+      description: Retrieve a paginated leaderboard for a given mode, platform, and time window. Used to surface top players by score, wins, kills, or matches played across the global Tracker Network cohort.
+      tags:
+      - Leaderboards
+      parameters:
+      - name: mode
+        in: path
+        required: true
+        description: Game mode. One of `p2` (solo), `p10` (duo), `p9` (squad).
+        schema:
+          type: string
+          enum:
+          - p2
+          - p10
+          - p9
+        example: p9
+      - name: platform
+        in: path
+        required: true
+        description: Player platform (`pc`, `xbl`, `psn`).
+        schema:
+          type: string
+          enum:
+          - pc
+          - xbl
+          - psn
+        example: pc
+      - name: window
+        in: path
+        required: true
+        description: Statistic and time window. Common values include `current_wins`, `current_kills`, `current_matches`, `lifetime_wins`, `lifetime_kills`, `lifetime_score`.
+        schema:
+          type: string
+        example: current_wins
+      - name: page
+        in: query
+        required: false
+        description: Page index for paginated results (zero-based).
+        schema:
+          type: integer
+          minimum: 0
+          default: 0
+        example: 0
+      responses:
+        '200':
+          description: Leaderboard page retrieved.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LeaderboardEntry'
+              examples:
+                ListLeaderboard200Example:
+                  summary: Default listLeaderboard 200 response
+                  x-microcks-default: true
+                  value:
+                  - accountId: 4735ce91-3292-4caf-8a5b-17789b40f79c
+                    platformId: 5
+                    platformName: pc
+                    epicUserHandle: Bugha
+                    rank: 1
+                    value: '412'
+                  - accountId: 9a82bd14-7b1f-4dca-9f1a-3c9a17b2c5e1
+                    platformId: 5
+                    platformName: pc
+                    epicUserHandle: Mongraal
+                    rank: 2
+                    value: '401'
+        '401':
+          description: Missing or invalid TRN-Api-Key header.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListLeaderboard401Example:
+                  summary: Default listLeaderboard 401 response
+                  x-microcks-default: true
+                  value:
+                    error: unauthorized
+                    message: Missing or invalid TRN-Api-Key header.
+        '429':
+          description: Rate limit exceeded.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              examples:
+                ListLeaderboard429Example:
+                  summary: Default listLeaderboard 429 response
+                  x-microcks-default: true
+                  value:
+                    error: rate_limited
+                    message: Rate limit exceeded.
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Error:
+      type: object
+      description: Standard error response body.
+      properties:
+        error:
+          type: string
+          description: Short machine-readable error code.
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Missing or invalid TRN-Api-Key header.
+    LeaderboardEntry:
+      type: object
+      description: A single leaderboard ranking row.
+      properties:
+        accountId:
+          type: string
+          format: uuid
+          description: Epic Games account UUID for the leaderboard entry.
+          example: 4735ce91-3292-4caf-8a5b-17789b40f79c
+        platformId:
+          type: integer
+          description: Numeric platform identifier.
+          example: 5
+        platformName:
+          type: string
+          description: Platform short code.
+          example: pc
+        epicUserHandle:
+          type: string
+          description: Player display name.
+          example: Bugha
+        rank:
+          type: integer
+          description: Rank position on the leaderboard.
+          example: 12
+        value:
+          type: string
+          description: Display value of the stat being ranked.
+          example: '247'
+  securitySchemes:
+    trnApiKey:
+      type: apiKey
+      in: header
+      name: TRN-Api-Key
+      description: Per-account API key issued from https://fortnitetracker.com/site-api/create. Pass as the `TRN-Api-Key` request header. Default rate limit is approximately one request per two seconds per key.
