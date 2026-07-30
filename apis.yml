@@ -1,4 +1,18 @@
 aid: fortnite
+accessModel:
+  pricing: free
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Free · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/fortnite.png
 name: Fortnite Tracker
 description: >-
   Fortnite Tracker, by Tracker Network, exposes a small REST API surface
@@ -26,34 +40,126 @@ tags:
   - Esports
   - Tracker Network
 apis:
-  - name: Fortnite Tracker
-    description: >-
-      REST API exposing Fortnite player profiles, leaderboards, power rankings,
-      store rotation, and challenges. All endpoints live under
-      https://api.fortnitetracker.com/v1 and require a TRN-Api-Key header.
-    humanURL: https://fortnitetracker.com/site-api
-    baseURL: https://api.fortnitetracker.com/v1
-    tags:
-      - Games And Comics
-      - Fortnite
-      - Player Statistics
-    properties:
-      - type: Documentation
-        url: https://fortnitetracker.com/site-api
-      - type: Signup
-        url: https://fortnitetracker.com/site-api/create
-      - type: OpenAPI
-        url: openapi/fortnite-tracker.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/fortnite-tracker-profile.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/fortnite-tracker-leaderboards.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/fortnite-tracker-power-rankings.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/fortnite-tracker-store.yaml
-      - type: X-NaftikoCapability
-        url: capabilities/fortnite-tracker-challenges.yaml
+- aid: fortnite:fortnite-challenges-api
+  name: Fortnite Tracker Challenges API
+  description: Current Battle Pass weekly challenges.
+  humanURL: https://fortnitetracker.com/site-api
+  baseURL: https://api.fortnitetracker.com/v1
+  tags:
+  - Challenges
+  properties:
+  - type: OpenAPI
+    url: openapi/fortnite-challenges-api-openapi.yml
+  - type: Documentation
+    url: https://fortnitetracker.com/site-api
+  - type: Signup
+    url: https://fortnitetracker.com/site-api/create
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-profile.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-leaderboards.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-power-rankings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-store.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-challenges.yaml
+- aid: fortnite:fortnite-leaderboards-api
+  name: Fortnite Tracker Leaderboards API
+  description: Top-player leaderboards by platform and region.
+  humanURL: https://fortnitetracker.com/site-api
+  baseURL: https://api.fortnitetracker.com/v1
+  tags:
+  - Leaderboards
+  properties:
+  - type: OpenAPI
+    url: openapi/fortnite-leaderboards-api-openapi.yml
+  - type: Documentation
+    url: https://fortnitetracker.com/site-api
+  - type: Signup
+    url: https://fortnitetracker.com/site-api/create
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-profile.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-leaderboards.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-power-rankings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-store.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-challenges.yaml
+- aid: fortnite:fortnite-power-rankings-api
+  name: Fortnite Tracker Power Rankings API
+  description: Competitive Fortnite power rankings across professional events.
+  humanURL: https://fortnitetracker.com/site-api
+  baseURL: https://api.fortnitetracker.com/v1
+  tags:
+  - Power Rankings
+  properties:
+  - type: OpenAPI
+    url: openapi/fortnite-power-rankings-api-openapi.yml
+  - type: Documentation
+    url: https://fortnitetracker.com/site-api
+  - type: Signup
+    url: https://fortnitetracker.com/site-api/create
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-profile.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-leaderboards.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-power-rankings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-store.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-challenges.yaml
+- aid: fortnite:fortnite-profile-api
+  name: Fortnite Tracker Profile API
+  description: Per-player Fortnite lifetime and per-mode statistics.
+  humanURL: https://fortnitetracker.com/site-api
+  baseURL: https://api.fortnitetracker.com/v1
+  tags:
+  - Profile
+  properties:
+  - type: OpenAPI
+    url: openapi/fortnite-profile-api-openapi.yml
+  - type: Documentation
+    url: https://fortnitetracker.com/site-api
+  - type: Signup
+    url: https://fortnitetracker.com/site-api/create
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-profile.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-leaderboards.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-power-rankings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-store.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-challenges.yaml
+- aid: fortnite:fortnite-store-api
+  name: Fortnite Tracker Store API
+  description: Current Fortnite in-game store rotation.
+  humanURL: https://fortnitetracker.com/site-api
+  baseURL: https://api.fortnitetracker.com/v1
+  tags:
+  - Store
+  properties:
+  - type: OpenAPI
+    url: openapi/fortnite-store-api-openapi.yml
+  - type: Documentation
+    url: https://fortnitetracker.com/site-api
+  - type: Signup
+    url: https://fortnitetracker.com/site-api/create
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-profile.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-leaderboards.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-power-rankings.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-store.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/fortnite-tracker-challenges.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/fortnite-agentic-access.yml
