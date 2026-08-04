@@ -1,0 +1,22 @@
+{
+  "provider": "fortnite",
+  "sources": [
+    "fortnite-challenges-api-openapi.yml",
+    "fortnite-leaderboards-api-openapi.yml",
+    "fortnite-power-rankings-api-openapi.yml",
+    "fortnite-profile-api-openapi.yml",
+    "fortnite-store-api-openapi.yml"
+  ],
+  "outputs": [
+    "fortnite-challenges-api-openapi.yml",
+    "fortnite-leaderboards-api-openapi.yml",
+    "fortnite-power-rankings-api-openapi.yml",
+    "fortnite-profile-api-openapi.yml",
+    "fortnite-store-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
