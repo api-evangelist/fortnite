@@ -54,16 +54,6 @@ apis:
     url: https://fortnitetracker.com/site-api
   - type: Signup
     url: https://fortnitetracker.com/site-api/create
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-profile.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-leaderboards.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-power-rankings.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-store.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-challenges.yaml
 - aid: fortnite:fortnite-leaderboards-api
   name: Fortnite Tracker Leaderboards API
   description: Top-player leaderboards by platform and region.
@@ -78,16 +68,6 @@ apis:
     url: https://fortnitetracker.com/site-api
   - type: Signup
     url: https://fortnitetracker.com/site-api/create
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-profile.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-leaderboards.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-power-rankings.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-store.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-challenges.yaml
 - aid: fortnite:fortnite-power-rankings-api
   name: Fortnite Tracker Power Rankings API
   description: Competitive Fortnite power rankings across professional events.
@@ -102,16 +82,6 @@ apis:
     url: https://fortnitetracker.com/site-api
   - type: Signup
     url: https://fortnitetracker.com/site-api/create
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-profile.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-leaderboards.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-power-rankings.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-store.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-challenges.yaml
 - aid: fortnite:fortnite-profile-api
   name: Fortnite Tracker Profile API
   description: Per-player Fortnite lifetime and per-mode statistics.
@@ -126,16 +96,6 @@ apis:
     url: https://fortnitetracker.com/site-api
   - type: Signup
     url: https://fortnitetracker.com/site-api/create
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-profile.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-leaderboards.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-power-rankings.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-store.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-challenges.yaml
 - aid: fortnite:fortnite-store-api
   name: Fortnite Tracker Store API
   description: Current Fortnite in-game store rotation.
@@ -150,16 +110,6 @@ apis:
     url: https://fortnitetracker.com/site-api
   - type: Signup
     url: https://fortnitetracker.com/site-api/create
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-profile.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-leaderboards.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-power-rankings.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-store.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/fortnite-tracker-challenges.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/fortnite-agentic-access.yml
