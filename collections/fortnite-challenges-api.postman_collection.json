@@ -1,0 +1,213 @@
+{
+  "item": [
+    {
+      "id": "63b5c3da-0ed3-4e05-8c4f-703cd3cd30d1",
+      "name": "Challenges",
+      "description": {
+        "content": "Current Battle Pass weekly challenges.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e023c6af-7a2e-4fe3-a846-386b96a3aa2a",
+          "name": "Fortnite Tracker List Weekly Challenges",
+          "request": {
+            "name": "Fortnite Tracker List Weekly Challenges",
+            "description": {
+              "content": "Retrieve the current week's Battle Pass challenge set, including completion criteria, star rewards, and challenge difficulty.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "challenges"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5655664b-5320-4590-85ed-64368a78b3b1",
+              "name": "Weekly challenge list retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "challenges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"id\": 500123,\n    \"name\": \"Deal damage with shotguns to opponents\",\n    \"description\": \"Deal 1,000 damage to opponents using shotguns.\",\n    \"completionGoal\": 1000,\n    \"rewardStars\": 5,\n    \"difficulty\": \"medium\",\n    \"week\": 6,\n    \"season\": \"c5s4\"\n  },\n  {\n    \"id\": 500124,\n    \"name\": \"Land at named locations\",\n    \"description\": \"Land at 5 different named locations in a single match.\",\n    \"completionGoal\": 5,\n    \"rewardStars\": 3,\n    \"difficulty\": \"easy\",\n    \"week\": 6,\n    \"season\": \"c5s4\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "584d6e37-ee95-4583-a7e8-9e0f3682f067",
+              "name": "Missing or invalid TRN-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "challenges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Missing or invalid TRN-Api-Key header.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3bcd3b77-1421-4b76-b70e-4e40fb6a508e",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "challenges"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limited\",\n  \"message\": \"Rate limit exceeded.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fortnitetracker.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "TRN-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "39c2fb7c-9685-44a6-9dd5-7c68fee08c06",
+    "name": "Fortnite Tracker Challenges API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.\n\nContact Support:\n Name: Tracker Network Support",
+      "type": "text/plain"
+    }
+  }
+}

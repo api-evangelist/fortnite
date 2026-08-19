@@ -1,0 +1,598 @@
+{
+  "item": [
+    {
+      "id": "2cf8d48b-8c43-43d6-9a35-74ed4c89626b",
+      "name": "Profile",
+      "description": {
+        "content": "Per-player Fortnite lifetime and per-mode statistics.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0704cd3e-c43d-42f2-a94e-e3d886a0a233",
+          "name": "Fortnite Tracker Get Player Profile",
+          "request": {
+            "name": "Fortnite Tracker Get Player Profile",
+            "description": {
+              "content": "Retrieve a player's Fortnite profile with lifetime statistics, per-mode stats (solo, duo, squad), and account metadata for the given platform and Epic Games display name.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                ":platform",
+                ":epicNickname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform",
+                  "description": "(Required) Player platform. One of `pc` (Epic Games on PC), `xbl` (Xbox Live), `psn` (PlayStation Network)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "epicNickname",
+                  "description": "(Required) Epic Games account display name for the player."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c40f0226-d798-4ad6-ba91-d8157084edd9",
+              "name": "Player profile retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    ":platform",
+                    ":epicNickname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform. One of `pc` (Epic Games on PC), `xbl` (Xbox Live), `psn` (PlayStation Network)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epicNickname",
+                      "description": "(Required) Epic Games account display name for the player."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": \"4735ce91-3292-4caf-8a5b-17789b40f79c\",\n  \"platformId\": 5,\n  \"platformName\": \"pc\",\n  \"platformNameLong\": \"PC / Epic Games\",\n  \"epicUserHandle\": \"Ninja\",\n  \"stats\": {\n    \"p9\": {\n      \"kd\": {\n        \"label\": \"K/D\",\n        \"field\": \"kd\",\n        \"category\": \"Combat\",\n        \"valueInt\": 3,\n        \"value\": \"3.21\",\n        \"rank\": \"12345\",\n        \"percentile\": 99.4,\n        \"displayValue\": \"3.21\"\n      },\n      \"score\": {\n        \"label\": \"Score\",\n        \"field\": \"score\",\n        \"category\": \"Game\",\n        \"valueInt\": 182000,\n        \"value\": \"182000\",\n        \"rank\": \"8721\",\n        \"percentile\": 99.8,\n        \"displayValue\": \"182,000\"\n      },\n      \"matches\": {\n        \"label\": \"Matches\",\n        \"field\": \"matches\",\n        \"category\": \"Game\",\n        \"valueInt\": 5421,\n        \"value\": \"5421\",\n        \"rank\": \"1872\",\n        \"percentile\": 99.9,\n        \"displayValue\": \"5,421\"\n      }\n    }\n  },\n  \"lifeTimeStats\": [\n    {\n      \"key\": \"Wins\",\n      \"value\": \"247\"\n    },\n    {\n      \"key\": \"Top 10\",\n      \"value\": \"1820\"\n    },\n    {\n      \"key\": \"Kills\",\n      \"value\": \"17421\"\n    }\n  ],\n  \"recentMatches\": [\n    {\n      \"id\": 500123,\n      \"accountId\": \"4735ce91-3292-4caf-8a5b-17789b40f79c\",\n      \"playlist\": \"p9\",\n      \"kills\": 8,\n      \"minutesPlayed\": 22,\n      \"top1\": 1,\n      \"top5\": 1,\n      \"top6\": 1,\n      \"top10\": 1,\n      \"top12\": 1,\n      \"top25\": 1,\n      \"matches\": 1,\n      \"score\": 1820,\n      \"dateCollected\": \"2026-05-29T18:42:11Z\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70b6e3ef-1439-4f55-bf2c-a284093c8791",
+              "name": "Missing or invalid TRN-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    ":platform",
+                    ":epicNickname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform. One of `pc` (Epic Games on PC), `xbl` (Xbox Live), `psn` (PlayStation Network)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epicNickname",
+                      "description": "(Required) Epic Games account display name for the player."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Missing or invalid TRN-Api-Key header.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "368bd341-a287-4dbc-8e76-151c0721a8a8",
+              "name": "Player not found on the given platform.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    ":platform",
+                    ":epicNickname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform. One of `pc` (Epic Games on PC), `xbl` (Xbox Live), `psn` (PlayStation Network)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epicNickname",
+                      "description": "(Required) Epic Games account display name for the player."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"Player not found on platform pc.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28e321a2-5525-4f29-ae6e-ab4cb9cea07e",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    ":platform",
+                    ":epicNickname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform. One of `pc` (Epic Games on PC), `xbl` (Xbox Live), `psn` (PlayStation Network)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epicNickname",
+                      "description": "(Required) Epic Games account display name for the player."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limited\",\n  \"message\": \"Rate limit exceeded. Default is 1 request per 2 seconds.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1a51065a-b72b-4a70-9e31-adcf4c3b556c",
+          "name": "Fortnite Tracker Get Player Profile by Account Id",
+          "request": {
+            "name": "Fortnite Tracker Get Player Profile by Account Id",
+            "description": {
+              "content": "Retrieve a player's Fortnite profile by Epic Games account UUID instead of display name. Useful for stable lookups when display names change.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profile",
+                "account",
+                ":accountId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<uuid>",
+                  "key": "accountId",
+                  "description": "(Required) Epic Games account UUID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b6fe712b-594c-44dd-972e-8297265ed975",
+              "name": "Player profile retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "account",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Epic Games account UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"accountId\": \"4735ce91-3292-4caf-8a5b-17789b40f79c\",\n  \"platformId\": 5,\n  \"platformName\": \"pc\",\n  \"platformNameLong\": \"PC / Epic Games\",\n  \"epicUserHandle\": \"Ninja\",\n  \"stats\": {},\n  \"lifeTimeStats\": [\n    {\n      \"key\": \"Wins\",\n      \"value\": \"247\"\n    }\n  ],\n  \"recentMatches\": []\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eff17924-3b6c-4613-93cf-3889b7ad1e0f",
+              "name": "Missing or invalid TRN-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "account",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Epic Games account UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Missing or invalid TRN-Api-Key header.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a0cd7df-db3a-4632-9af0-394332951864",
+              "name": "Account not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "account",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Epic Games account UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"Account 4735ce91-3292-4caf-8a5b-17789b40f79c not found.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "185b67fc-be08-4a1b-8fa5-ececd32a0dda",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profile",
+                    "account",
+                    ":accountId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<uuid>",
+                      "key": "accountId",
+                      "description": "(Required) Epic Games account UUID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limited\",\n  \"message\": \"Rate limit exceeded.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fortnitetracker.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "TRN-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "ed6f5b66-8e92-4bf4-9473-a5da24b483b1",
+    "name": "Fortnite Tracker Challenges Profile API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.\n\nContact Support:\n Name: Tracker Network Support",
+      "type": "text/plain"
+    }
+  }
+}

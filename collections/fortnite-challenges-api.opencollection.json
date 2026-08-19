@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortnite Tracker Challenges API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "TRN-Api-Key",
+      "value": "{{TRN-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Challenges",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortnite Tracker List Weekly Challenges",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fortnitetracker.com/v1/challenges"
+          },
+          "docs": "Retrieve the current week's Battle Pass challenge set, including completion criteria, star rewards, and challenge difficulty."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

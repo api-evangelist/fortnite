@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortnite Tracker Challenges Power Rankings API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "TRN-Api-Key",
+      "value": "{{TRN-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Power Rankings",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortnite Tracker List Top 500 Power Rankings",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fortnitetracker.com/v1/powerrankings/top500"
+          },
+          "docs": "Retrieve the top 500 ranked professional Fortnite players globally as ranked by Tracker Network's competitive power-ranking algorithm."
+        },
+        {
+          "info": {
+            "name": "Fortnite Tracker Get Player Power Ranking",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fortnitetracker.com/v1/powerrankings/:platform/:region/:epicNickname",
+            "params": [
+              {
+                "name": "platform",
+                "value": "pc",
+                "type": "path",
+                "description": "Player platform (`pc`, `xbl`, `psn`)."
+              },
+              {
+                "name": "region",
+                "value": "na-east",
+                "type": "path",
+                "description": "Competitive region."
+              },
+              {
+                "name": "epicNickname",
+                "value": "Bugha",
+                "type": "path",
+                "description": "Epic Games account display name."
+              }
+            ]
+          },
+          "docs": "Retrieve the competitive power-ranking detail for a specific professional player, scoped to platform and region."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

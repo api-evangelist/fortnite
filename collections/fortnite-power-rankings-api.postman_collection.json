@@ -1,0 +1,549 @@
+{
+  "item": [
+    {
+      "id": "a86cfd03-3e70-4df8-b604-6d326829c727",
+      "name": "Power Rankings",
+      "description": {
+        "content": "Competitive Fortnite power rankings across professional events.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "27a6e416-dcec-49ba-9a41-9709177bf724",
+          "name": "Fortnite Tracker List Top 500 Power Rankings",
+          "request": {
+            "name": "Fortnite Tracker List Top 500 Power Rankings",
+            "description": {
+              "content": "Retrieve the top 500 ranked professional Fortnite players globally as ranked by Tracker Network's competitive power-ranking algorithm.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "powerrankings",
+                "top500"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "033b41a3-0ca9-4356-ac2b-71d003520f1f",
+              "name": "Power ranking list retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "powerrankings",
+                    "top500"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"rank\": 1,\n    \"country\": \"US\",\n    \"platform\": \"pc\",\n    \"region\": \"na-east\",\n    \"epicNickname\": \"Bugha\",\n    \"points\": 12500.5,\n    \"earnings\": \"$3,000,000\",\n    \"twitchUrl\": \"https://twitch.tv/bugha\"\n  },\n  {\n    \"rank\": 2,\n    \"country\": \"GB\",\n    \"platform\": \"pc\",\n    \"region\": \"eu\",\n    \"epicNickname\": \"Mongraal\",\n    \"points\": 12100,\n    \"earnings\": \"$1,800,000\",\n    \"twitchUrl\": \"https://twitch.tv/mongraal\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "94222df7-7cd2-4538-8020-861b222ac7e4",
+              "name": "Missing or invalid TRN-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "powerrankings",
+                    "top500"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Missing or invalid TRN-Api-Key header.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bfb39cdd-0b3e-4fc2-82f6-f946bfc423f0",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "powerrankings",
+                    "top500"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limited\",\n  \"message\": \"Rate limit exceeded.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "81914dd8-b8aa-42ca-8286-8433a4e6e530",
+          "name": "Fortnite Tracker Get Player Power Ranking",
+          "request": {
+            "name": "Fortnite Tracker Get Player Power Ranking",
+            "description": {
+              "content": "Retrieve the competitive power-ranking detail for a specific professional player, scoped to platform and region.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "powerrankings",
+                ":platform",
+                ":region",
+                ":epicNickname"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform",
+                  "description": "(Required) Player platform (`pc`, `xbl`, `psn`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "region",
+                  "description": "(Required) Competitive region."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "epicNickname",
+                  "description": "(Required) Epic Games account display name."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0b1ce9b0-a1d3-4ed3-b382-eef5851c2091",
+              "name": "Power ranking detail retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "powerrankings",
+                    ":platform",
+                    ":region",
+                    ":epicNickname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform (`pc`, `xbl`, `psn`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "region",
+                      "description": "(Required) Competitive region."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epicNickname",
+                      "description": "(Required) Epic Games account display name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"rank\": 1,\n  \"country\": \"US\",\n  \"platform\": \"pc\",\n  \"region\": \"na-east\",\n  \"epicNickname\": \"Bugha\",\n  \"points\": 12500.5,\n  \"earnings\": \"$3,000,000\",\n  \"twitchUrl\": \"https://twitch.tv/bugha\",\n  \"events\": [\n    {\n      \"name\": \"FNCS Chapter 5 Season 2 Finals\",\n      \"date\": \"2026-04-12\",\n      \"points\": 1500,\n      \"placement\": 3\n    },\n    {\n      \"name\": \"Cash Cup Extra NA East\",\n      \"date\": \"2026-04-26\",\n      \"points\": 800,\n      \"placement\": 1\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "366b52d9-939c-4dcf-9d62-34c9c2cedc7f",
+              "name": "Missing or invalid TRN-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "powerrankings",
+                    ":platform",
+                    ":region",
+                    ":epicNickname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform (`pc`, `xbl`, `psn`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "region",
+                      "description": "(Required) Competitive region."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epicNickname",
+                      "description": "(Required) Epic Games account display name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Missing or invalid TRN-Api-Key header.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "32030682-e5b5-4e1e-b810-e349cc6cd88d",
+              "name": "Player power-ranking entry not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "powerrankings",
+                    ":platform",
+                    ":region",
+                    ":epicNickname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform (`pc`, `xbl`, `psn`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "region",
+                      "description": "(Required) Competitive region."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epicNickname",
+                      "description": "(Required) Epic Games account display name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"not_found\",\n  \"message\": \"Power ranking entry not found for player.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ad694428-95ad-4712-a662-4fa374122d7d",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "powerrankings",
+                    ":platform",
+                    ":region",
+                    ":epicNickname"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform (`pc`, `xbl`, `psn`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "region",
+                      "description": "(Required) Competitive region."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "epicNickname",
+                      "description": "(Required) Epic Games account display name."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limited\",\n  \"message\": \"Rate limit exceeded.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fortnitetracker.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "TRN-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b29dd477-6529-4e0c-a90a-c26d15f5f078",
+    "name": "Fortnite Tracker Challenges Power Rankings API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.\n\nContact Support:\n Name: Tracker Network Support",
+      "type": "text/plain"
+    }
+  }
+}

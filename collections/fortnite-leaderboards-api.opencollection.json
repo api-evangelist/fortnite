@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortnite Tracker Challenges Leaderboards API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "TRN-Api-Key",
+      "value": "{{TRN-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Leaderboards",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortnite Tracker List Leaderboard",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fortnitetracker.com/v1/leaderboards/:mode/:platform/:window",
+            "params": [
+              {
+                "name": "mode",
+                "value": "p9",
+                "type": "path",
+                "description": "Game mode. One of `p2` (solo), `p10` (duo), `p9` (squad)."
+              },
+              {
+                "name": "platform",
+                "value": "pc",
+                "type": "path",
+                "description": "Player platform (`pc`, `xbl`, `psn`)."
+              },
+              {
+                "name": "window",
+                "value": "current_wins",
+                "type": "path",
+                "description": "Statistic and time window. Common values include `current_wins`, `current_kills`, `current_matches`, `lifetime_wins`, `lifetime_kills`, `lifetime_score`."
+              },
+              {
+                "name": "page",
+                "value": "0",
+                "type": "query",
+                "description": "Page index for paginated results (zero-based)."
+              }
+            ]
+          },
+          "docs": "Retrieve a paginated leaderboard for a given mode, platform, and time window. Used to surface top players by score, wins, kills, or matches played across the global Tracker Network cohort."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

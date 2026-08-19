@@ -1,0 +1,335 @@
+{
+  "item": [
+    {
+      "id": "807aff88-5017-4361-b8f7-a2eada17499a",
+      "name": "Leaderboards",
+      "description": {
+        "content": "Top-player leaderboards by platform and region.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "65eb0598-9568-4bab-b637-b25f5e97e796",
+          "name": "Fortnite Tracker List Leaderboard",
+          "request": {
+            "name": "Fortnite Tracker List Leaderboard",
+            "description": {
+              "content": "Retrieve a paginated leaderboard for a given mode, platform, and time window. Used to surface top players by score, wins, kills, or matches played across the global Tracker Network cohort.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "leaderboards",
+                ":mode",
+                ":platform",
+                ":window"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "page",
+                  "value": "0",
+                  "description": "Page index for paginated results (zero-based)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "mode",
+                  "description": "(Required) Game mode. One of `p2` (solo), `p10` (duo), `p9` (squad)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "platform",
+                  "description": "(Required) Player platform (`pc`, `xbl`, `psn`)."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "window",
+                  "description": "(Required) Statistic and time window. Common values include `current_wins`, `current_kills`, `current_matches`, `lifetime_wins`, `lifetime_kills`, `lifetime_score`."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7415ece-5b28-4c4b-819d-dc8479249207",
+              "name": "Leaderboard page retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leaderboards",
+                    ":mode",
+                    ":platform",
+                    ":window"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mode",
+                      "description": "(Required) Game mode. One of `p2` (solo), `p10` (duo), `p9` (squad)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform (`pc`, `xbl`, `psn`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "window",
+                      "description": "(Required) Statistic and time window. Common values include `current_wins`, `current_kills`, `current_matches`, `lifetime_wins`, `lifetime_kills`, `lifetime_score`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"accountId\": \"4735ce91-3292-4caf-8a5b-17789b40f79c\",\n    \"platformId\": 5,\n    \"platformName\": \"pc\",\n    \"epicUserHandle\": \"Bugha\",\n    \"rank\": 1,\n    \"value\": \"412\"\n  },\n  {\n    \"accountId\": \"9a82bd14-7b1f-4dca-9f1a-3c9a17b2c5e1\",\n    \"platformId\": 5,\n    \"platformName\": \"pc\",\n    \"epicUserHandle\": \"Mongraal\",\n    \"rank\": 2,\n    \"value\": \"401\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bdf03b4d-19d9-4aa9-a6a1-c874bea23149",
+              "name": "Missing or invalid TRN-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leaderboards",
+                    ":mode",
+                    ":platform",
+                    ":window"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mode",
+                      "description": "(Required) Game mode. One of `p2` (solo), `p10` (duo), `p9` (squad)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform (`pc`, `xbl`, `psn`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "window",
+                      "description": "(Required) Statistic and time window. Common values include `current_wins`, `current_kills`, `current_matches`, `lifetime_wins`, `lifetime_kills`, `lifetime_score`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Missing or invalid TRN-Api-Key header.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62bda894-bc8e-4648-8a2f-be347e15b30e",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "leaderboards",
+                    ":mode",
+                    ":platform",
+                    ":window"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "page",
+                      "value": "0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "mode",
+                      "description": "(Required) Game mode. One of `p2` (solo), `p10` (duo), `p9` (squad)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "platform",
+                      "description": "(Required) Player platform (`pc`, `xbl`, `psn`)."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "window",
+                      "description": "(Required) Statistic and time window. Common values include `current_wins`, `current_kills`, `current_matches`, `lifetime_wins`, `lifetime_kills`, `lifetime_score`."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limited\",\n  \"message\": \"Rate limit exceeded.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fortnitetracker.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "TRN-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "96e7efbd-3c7b-429d-8e9b-749e65318bfe",
+    "name": "Fortnite Tracker Challenges Leaderboards API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.\n\nContact Support:\n Name: Tracker Network Support",
+      "type": "text/plain"
+    }
+  }
+}

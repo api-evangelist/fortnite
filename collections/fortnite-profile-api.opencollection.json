@@ -1,0 +1,70 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Fortnite Tracker Challenges Profile API",
+    "version": "1.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "TRN-Api-Key",
+      "value": "{{TRN-Api-Key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Profile",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Fortnite Tracker Get Player Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fortnitetracker.com/v1/profile/:platform/:epicNickname",
+            "params": [
+              {
+                "name": "platform",
+                "value": "pc",
+                "type": "path",
+                "description": "Player platform. One of `pc` (Epic Games on PC), `xbl` (Xbox Live), `psn` (PlayStation Network)."
+              },
+              {
+                "name": "epicNickname",
+                "value": "Ninja",
+                "type": "path",
+                "description": "Epic Games account display name for the player."
+              }
+            ]
+          },
+          "docs": "Retrieve a player's Fortnite profile with lifetime statistics, per-mode stats (solo, duo, squad), and account metadata for the given platform and Epic Games display name."
+        },
+        {
+          "info": {
+            "name": "Fortnite Tracker Get Player Profile by Account Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.fortnitetracker.com/v1/profile/account/:accountId",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "4735ce91-3292-4caf-8a5b-17789b40f79c",
+                "type": "path",
+                "description": "Epic Games account UUID."
+              }
+            ]
+          },
+          "docs": "Retrieve a player's Fortnite profile by Epic Games account UUID instead of display name. Useful for stable lookups when display names change."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

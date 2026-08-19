@@ -1,0 +1,213 @@
+{
+  "item": [
+    {
+      "id": "a1c1593a-f92e-462e-965b-e58d0ca8f2b3",
+      "name": "Store",
+      "description": {
+        "content": "Current Fortnite in-game store rotation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e267cf60-c4cf-4659-980d-e7730e67c0b9",
+          "name": "Fortnite Tracker List Store Items",
+          "request": {
+            "name": "Fortnite Tracker List Store Items",
+            "description": {
+              "content": "Retrieve the current Fortnite in-game store rotation, including both the daily storefront and the weekly featured storefront with vBucks prices and rarity tiers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "store"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aaf05e0c-25b2-44b9-a5c2-980a10b972c9",
+              "name": "Store rotation retrieved.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "store"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"imageUrl\": \"https://trackercdn.com/cdn/fortnitetracker.com/items/renegade.png\",\n    \"manifestId\": 500123,\n    \"name\": \"Renegade Raider\",\n    \"rarity\": \"Legendary\",\n    \"storeCategory\": \"BRWeeklyStorefront\",\n    \"vBucks\": 1500\n  },\n  {\n    \"imageUrl\": \"https://trackercdn.com/cdn/fortnitetracker.com/items/skull-trooper.png\",\n    \"manifestId\": 500124,\n    \"name\": \"Skull Trooper\",\n    \"rarity\": \"Epic\",\n    \"storeCategory\": \"BRDailyStorefront\",\n    \"vBucks\": 1200\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e6e03a84-3534-4eb2-892e-5031faf35b8f",
+              "name": "Missing or invalid TRN-Api-Key header.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "store"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"unauthorized\",\n  \"message\": \"Missing or invalid TRN-Api-Key header.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e02a2a0-0ddc-4c14-959c-bd65226bc414",
+              "name": "Rate limit exceeded.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "store"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "TRN-Api-Key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Too Many Requests",
+              "code": 429,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"rate_limited\",\n  \"message\": \"Rate limit exceeded.\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.fortnitetracker.com/v1",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "TRN-Api-Key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d05d340a-427c-477f-a6c7-2b090517ab7a",
+    "name": "Fortnite Tracker Challenges Store API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.\n\nContact Support:\n Name: Tracker Network Support",
+      "type": "text/plain"
+    }
+  }
+}
