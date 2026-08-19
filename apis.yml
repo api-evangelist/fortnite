@@ -24,7 +24,7 @@ description: >-
   unavailable) but remains the canonical community profile of how Tracker
   Network packages Epic Games' Fortnite telemetry as a developer API.
 url: https://fortnitetracker.com/site-api
-specificationVersion: '0.20'
+specificationVersion: '0.23'
 created: '2026-05-28'
 modified: '2026-05-30'
 x-source: public-apis/public-apis
