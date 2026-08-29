@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Fortnite Tracker Challenges Power Rankings API
   version: '1.0'
@@ -200,6 +200,36 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    PowerRankingDetail:
+      allOf:
+      - $ref: '#/components/schemas/PowerRankingEntry'
+      - type: object
+        description: Power ranking entry with event-level breakdown.
+        properties:
+          events:
+            type: array
+            description: List of qualifying tournament events.
+            items:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: Tournament name.
+                  example: FNCS Chapter 5 Season 2 Finals
+                date:
+                  type: string
+                  format: date
+                  description: Event date.
+                  example: '2026-04-12'
+                points:
+                  type: number
+                  format: float
+                  description: Power-ranking points awarded.
+                  example: 1500
+                placement:
+                  type: integer
+                  description: Final placement at the event.
+                  example: 3
     PowerRankingEntry:
       type: object
       description: A single competitive power-ranking row.
@@ -250,36 +280,6 @@ components:
           type: string
           description: Human-readable error description.
           example: Missing or invalid TRN-Api-Key header.
-    PowerRankingDetail:
-      allOf:
-      - $ref: '#/components/schemas/PowerRankingEntry'
-      - type: object
-        description: Power ranking entry with event-level breakdown.
-        properties:
-          events:
-            type: array
-            description: List of qualifying tournament events.
-            items:
-              type: object
-              properties:
-                name:
-                  type: string
-                  description: Tournament name.
-                  example: FNCS Chapter 5 Season 2 Finals
-                date:
-                  type: string
-                  format: date
-                  description: Event date.
-                  example: '2026-04-12'
-                points:
-                  type: number
-                  format: float
-                  description: Power-ranking points awarded.
-                  example: 1500
-                placement:
-                  type: integer
-                  description: Final placement at the event.
-                  example: 3
   securitySchemes:
     trnApiKey:
       type: apiKey

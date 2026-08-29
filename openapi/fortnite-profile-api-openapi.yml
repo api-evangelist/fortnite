@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Fortnite Tracker Challenges Profile API
   version: '1.0'
@@ -238,32 +238,43 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    StatBlock:
+    StatValue:
       type: object
-      description: A grouped stat block for a single mode (e.g., solo, duo, squad).
+      description: A single stat value with display formatting and numeric value.
       properties:
-        trnRating:
-          $ref: '#/components/schemas/StatValue'
-        score:
-          $ref: '#/components/schemas/StatValue'
-        top1:
-          $ref: '#/components/schemas/StatValue'
-        top3:
-          $ref: '#/components/schemas/StatValue'
-        top5:
-          $ref: '#/components/schemas/StatValue'
-        top10:
-          $ref: '#/components/schemas/StatValue'
-        kd:
-          $ref: '#/components/schemas/StatValue'
-        winRatio:
-          $ref: '#/components/schemas/StatValue'
-        matches:
-          $ref: '#/components/schemas/StatValue'
-        kills:
-          $ref: '#/components/schemas/StatValue'
-        minutesPlayed:
-          $ref: '#/components/schemas/StatValue'
+        label:
+          type: string
+          description: Human label for the stat.
+          example: K/D
+        field:
+          type: string
+          description: Internal field identifier.
+          example: kd
+        category:
+          type: string
+          description: Stat category (e.g., `Game`, `Combat`).
+          example: Combat
+        valueInt:
+          type: integer
+          description: Integer representation of the value where applicable.
+          example: 12
+        value:
+          type: string
+          description: Display value as a string.
+          example: '3.21'
+        rank:
+          type: string
+          description: Global rank for this stat.
+          example: '12345'
+        percentile:
+          type: number
+          format: float
+          description: Percentile rank (0-100).
+          example: 99.4
+        displayValue:
+          type: string
+          description: Pre-formatted display value.
+          example: '3.21'
     MatchSummary:
       type: object
       description: Summary of a recent match.
@@ -326,6 +337,56 @@ components:
           format: date-time
           description: Timestamp the match summary was recorded.
           example: '2026-05-29T18:42:11Z'
+    Error:
+      type: object
+      description: Standard error response body.
+      properties:
+        error:
+          type: string
+          description: Short machine-readable error code.
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Missing or invalid TRN-Api-Key header.
+    StatBlock:
+      type: object
+      description: A grouped stat block for a single mode (e.g., solo, duo, squad).
+      properties:
+        trnRating:
+          $ref: '#/components/schemas/StatValue'
+        score:
+          $ref: '#/components/schemas/StatValue'
+        top1:
+          $ref: '#/components/schemas/StatValue'
+        top3:
+          $ref: '#/components/schemas/StatValue'
+        top5:
+          $ref: '#/components/schemas/StatValue'
+        top10:
+          $ref: '#/components/schemas/StatValue'
+        kd:
+          $ref: '#/components/schemas/StatValue'
+        winRatio:
+          $ref: '#/components/schemas/StatValue'
+        matches:
+          $ref: '#/components/schemas/StatValue'
+        kills:
+          $ref: '#/components/schemas/StatValue'
+        minutesPlayed:
+          $ref: '#/components/schemas/StatValue'
+    StatLine:
+      type: object
+      description: A single lifetime stat key/value pair.
+      properties:
+        key:
+          type: string
+          description: Stat key (e.g., `Wins`, `Top 10`, `Kills`).
+          example: Wins
+        value:
+          type: string
+          description: Stat value as a string.
+          example: '247'
     PlayerProfile:
       type: object
       description: Fortnite player profile with lifetime and per-mode statistics.
@@ -370,67 +431,6 @@ components:
       - accountId
       - epicUserHandle
       - platformName
-    Error:
-      type: object
-      description: Standard error response body.
-      properties:
-        error:
-          type: string
-          description: Short machine-readable error code.
-          example: unauthorized
-        message:
-          type: string
-          description: Human-readable error description.
-          example: Missing or invalid TRN-Api-Key header.
-    StatLine:
-      type: object
-      description: A single lifetime stat key/value pair.
-      properties:
-        key:
-          type: string
-          description: Stat key (e.g., `Wins`, `Top 10`, `Kills`).
-          example: Wins
-        value:
-          type: string
-          description: Stat value as a string.
-          example: '247'
-    StatValue:
-      type: object
-      description: A single stat value with display formatting and numeric value.
-      properties:
-        label:
-          type: string
-          description: Human label for the stat.
-          example: K/D
-        field:
-          type: string
-          description: Internal field identifier.
-          example: kd
-        category:
-          type: string
-          description: Stat category (e.g., `Game`, `Combat`).
-          example: Combat
-        valueInt:
-          type: integer
-          description: Integer representation of the value where applicable.
-          example: 12
-        value:
-          type: string
-          description: Display value as a string.
-          example: '3.21'
-        rank:
-          type: string
-          description: Global rank for this stat.
-          example: '12345'
-        percentile:
-          type: number
-          format: float
-          description: Percentile rank (0-100).
-          example: 99.4
-        displayValue:
-          type: string
-          description: Pre-formatted display value.
-          example: '3.21'
   securitySchemes:
     trnApiKey:
       type: apiKey

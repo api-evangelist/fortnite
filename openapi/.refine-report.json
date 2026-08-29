@@ -17,6 +17,13 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
+  "notes": [
+    "fortnite-challenges-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "fortnite-leaderboards-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "fortnite-power-rankings-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "fortnite-profile-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "fortnite-store-api-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
   "skipped": []
 }
