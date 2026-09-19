@@ -101,6 +101,8 @@ apis:
   humanURL: https://fortnitetracker.com/site-api
   baseURL: https://api.fortnitetracker.com/v1
   tags:
+  - Profiles
+  tags_raw:
   - Profile
   properties:
   - type: OpenAPI
