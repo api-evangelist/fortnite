@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Fortnite Tracker Challenges Profile API
+  title: Fortnite Tracker Profile API
   version: '1.0'
-  description: Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.
+  description: Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API.
   contact:
     name: Tracker Network Support
     url: https://feedback.tracker.gg/
@@ -238,6 +238,76 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    PlayerProfile:
+      type: object
+      description: Fortnite player profile with lifetime and per-mode statistics.
+      properties:
+        accountId:
+          type: string
+          format: uuid
+          description: Epic Games account UUID.
+          example: 4735ce91-3292-4caf-8a5b-17789b40f79c
+        platformId:
+          type: integer
+          description: Numeric platform identifier (5 = PC/Epic, 1 = PSN, 2 = Xbox Live).
+          example: 5
+        platformName:
+          type: string
+          description: Platform short code (`pc`, `psn`, `xbl`).
+          example: pc
+        platformNameLong:
+          type: string
+          description: Human-readable platform name.
+          example: PC / Epic Games
+        epicUserHandle:
+          type: string
+          description: Epic Games display name.
+          example: Ninja
+        stats:
+          type: object
+          description: Per-mode stat blocks keyed by mode identifier.
+          additionalProperties:
+            $ref: '#/components/schemas/StatBlock'
+        lifeTimeStats:
+          type: array
+          description: Lifetime statistic key/value pairs.
+          items:
+            $ref: '#/components/schemas/StatLine'
+        recentMatches:
+          type: array
+          description: Recent match summary entries.
+          items:
+            $ref: '#/components/schemas/MatchSummary'
+      required:
+      - accountId
+      - epicUserHandle
+      - platformName
+    StatBlock:
+      type: object
+      description: A grouped stat block for a single mode (e.g., solo, duo, squad).
+      properties:
+        trnRating:
+          $ref: '#/components/schemas/StatValue'
+        score:
+          $ref: '#/components/schemas/StatValue'
+        top1:
+          $ref: '#/components/schemas/StatValue'
+        top3:
+          $ref: '#/components/schemas/StatValue'
+        top5:
+          $ref: '#/components/schemas/StatValue'
+        top10:
+          $ref: '#/components/schemas/StatValue'
+        kd:
+          $ref: '#/components/schemas/StatValue'
+        winRatio:
+          $ref: '#/components/schemas/StatValue'
+        matches:
+          $ref: '#/components/schemas/StatValue'
+        kills:
+          $ref: '#/components/schemas/StatValue'
+        minutesPlayed:
+          $ref: '#/components/schemas/StatValue'
     StatValue:
       type: object
       description: A single stat value with display formatting and numeric value.
@@ -275,6 +345,18 @@ components:
           type: string
           description: Pre-formatted display value.
           example: '3.21'
+    StatLine:
+      type: object
+      description: A single lifetime stat key/value pair.
+      properties:
+        key:
+          type: string
+          description: Stat key (e.g., `Wins`, `Top 10`, `Kills`).
+          example: Wins
+        value:
+          type: string
+          description: Stat value as a string.
+          example: '247'
     MatchSummary:
       type: object
       description: Summary of a recent match.
@@ -349,88 +431,6 @@ components:
           type: string
           description: Human-readable error description.
           example: Missing or invalid TRN-Api-Key header.
-    StatBlock:
-      type: object
-      description: A grouped stat block for a single mode (e.g., solo, duo, squad).
-      properties:
-        trnRating:
-          $ref: '#/components/schemas/StatValue'
-        score:
-          $ref: '#/components/schemas/StatValue'
-        top1:
-          $ref: '#/components/schemas/StatValue'
-        top3:
-          $ref: '#/components/schemas/StatValue'
-        top5:
-          $ref: '#/components/schemas/StatValue'
-        top10:
-          $ref: '#/components/schemas/StatValue'
-        kd:
-          $ref: '#/components/schemas/StatValue'
-        winRatio:
-          $ref: '#/components/schemas/StatValue'
-        matches:
-          $ref: '#/components/schemas/StatValue'
-        kills:
-          $ref: '#/components/schemas/StatValue'
-        minutesPlayed:
-          $ref: '#/components/schemas/StatValue'
-    StatLine:
-      type: object
-      description: A single lifetime stat key/value pair.
-      properties:
-        key:
-          type: string
-          description: Stat key (e.g., `Wins`, `Top 10`, `Kills`).
-          example: Wins
-        value:
-          type: string
-          description: Stat value as a string.
-          example: '247'
-    PlayerProfile:
-      type: object
-      description: Fortnite player profile with lifetime and per-mode statistics.
-      properties:
-        accountId:
-          type: string
-          format: uuid
-          description: Epic Games account UUID.
-          example: 4735ce91-3292-4caf-8a5b-17789b40f79c
-        platformId:
-          type: integer
-          description: Numeric platform identifier (5 = PC/Epic, 1 = PSN, 2 = Xbox Live).
-          example: 5
-        platformName:
-          type: string
-          description: Platform short code (`pc`, `psn`, `xbl`).
-          example: pc
-        platformNameLong:
-          type: string
-          description: Human-readable platform name.
-          example: PC / Epic Games
-        epicUserHandle:
-          type: string
-          description: Epic Games display name.
-          example: Ninja
-        stats:
-          type: object
-          description: Per-mode stat blocks keyed by mode identifier.
-          additionalProperties:
-            $ref: '#/components/schemas/StatBlock'
-        lifeTimeStats:
-          type: array
-          description: Lifetime statistic key/value pairs.
-          items:
-            $ref: '#/components/schemas/StatLine'
-        recentMatches:
-          type: array
-          description: Recent match summary entries.
-          items:
-            $ref: '#/components/schemas/MatchSummary'
-      required:
-      - accountId
-      - epicUserHandle
-      - platformName
   securitySchemes:
     trnApiKey:
       type: apiKey

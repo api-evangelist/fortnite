@@ -1,8 +1,8 @@
 openapi: 3.2.0
 info:
-  title: Fortnite Tracker Challenges Power Rankings API
+  title: Fortnite Tracker Power Rankings API
   version: '1.0'
-  description: Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.
+  description: Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API.
   contact:
     name: Tracker Network Support
     url: https://feedback.tracker.gg/
@@ -230,6 +230,18 @@ components:
                   type: integer
                   description: Final placement at the event.
                   example: 3
+    Error:
+      type: object
+      description: Standard error response body.
+      properties:
+        error:
+          type: string
+          description: Short machine-readable error code.
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Missing or invalid TRN-Api-Key header.
     PowerRankingEntry:
       type: object
       description: A single competitive power-ranking row.
@@ -268,18 +280,6 @@ components:
           format: uri
           description: Twitch channel URL for the player when known.
           example: https://twitch.tv/bugha
-    Error:
-      type: object
-      description: Standard error response body.
-      properties:
-        error:
-          type: string
-          description: Short machine-readable error code.
-          example: unauthorized
-        message:
-          type: string
-          description: Human-readable error description.
-          example: Missing or invalid TRN-Api-Key header.
   securitySchemes:
     trnApiKey:
       type: apiKey

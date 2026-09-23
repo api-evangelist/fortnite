@@ -2,7 +2,7 @@ openapi: 3.2.0
 info:
   title: Fortnite Tracker Challenges API
   version: '1.0'
-  description: Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API. It exposes per-player lifetime statistics, regional leaderboards, competitive power rankings, the daily/weekly in-game store rotation, and the current week's Battle Pass challenges. Every call requires a TRN-Api-Key header issued from fortnitetracker.com/site-api/create. The service is intentionally rate-limited (about one request every two seconds per key) and has been in a silent end-of-life state for several years — some endpoints may return intermittent errors.
+  description: Fortnite Tracker (api.fortnitetracker.com/v1) is the Tracker Network developer surface that wraps Epic Games' Fortnite telemetry behind a simple REST API.
   contact:
     name: Tracker Network Support
     url: https://feedback.tracker.gg/
@@ -88,6 +88,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Error:
+      type: object
+      description: Standard error response body.
+      properties:
+        error:
+          type: string
+          description: Short machine-readable error code.
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Missing or invalid TRN-Api-Key header.
     Challenge:
       type: object
       description: A single Battle Pass weekly challenge.
@@ -129,18 +141,6 @@ components:
           type: string
           description: Battle Pass season identifier.
           example: c5s4
-    Error:
-      type: object
-      description: Standard error response body.
-      properties:
-        error:
-          type: string
-          description: Short machine-readable error code.
-          example: unauthorized
-        message:
-          type: string
-          description: Human-readable error description.
-          example: Missing or invalid TRN-Api-Key header.
   securitySchemes:
     trnApiKey:
       type: apiKey
