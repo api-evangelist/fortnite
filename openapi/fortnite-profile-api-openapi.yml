@@ -238,44 +238,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    Error:
-      type: object
-      description: Standard error response body.
-      properties:
-        error:
-          type: string
-          description: Short machine-readable error code.
-          example: unauthorized
-        message:
-          type: string
-          description: Human-readable error description.
-          example: Missing or invalid TRN-Api-Key header.
-    StatBlock:
-      type: object
-      description: A grouped stat block for a single mode (e.g., solo, duo, squad).
-      properties:
-        trnRating:
-          $ref: '#/components/schemas/StatValue'
-        score:
-          $ref: '#/components/schemas/StatValue'
-        top1:
-          $ref: '#/components/schemas/StatValue'
-        top3:
-          $ref: '#/components/schemas/StatValue'
-        top5:
-          $ref: '#/components/schemas/StatValue'
-        top10:
-          $ref: '#/components/schemas/StatValue'
-        kd:
-          $ref: '#/components/schemas/StatValue'
-        winRatio:
-          $ref: '#/components/schemas/StatValue'
-        matches:
-          $ref: '#/components/schemas/StatValue'
-        kills:
-          $ref: '#/components/schemas/StatValue'
-        minutesPlayed:
-          $ref: '#/components/schemas/StatValue'
     StatValue:
       type: object
       description: A single stat value with display formatting and numeric value.
@@ -313,6 +275,100 @@ components:
           type: string
           description: Pre-formatted display value.
           example: '3.21'
+    Error:
+      type: object
+      description: Standard error response body.
+      properties:
+        error:
+          type: string
+          description: Short machine-readable error code.
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Missing or invalid TRN-Api-Key header.
+    StatLine:
+      type: object
+      description: A single lifetime stat key/value pair.
+      properties:
+        key:
+          type: string
+          description: Stat key (e.g., `Wins`, `Top 10`, `Kills`).
+          example: Wins
+        value:
+          type: string
+          description: Stat value as a string.
+          example: '247'
+    StatBlock:
+      type: object
+      description: A grouped stat block for a single mode (e.g., solo, duo, squad).
+      properties:
+        trnRating:
+          $ref: '#/components/schemas/StatValue'
+        score:
+          $ref: '#/components/schemas/StatValue'
+        top1:
+          $ref: '#/components/schemas/StatValue'
+        top3:
+          $ref: '#/components/schemas/StatValue'
+        top5:
+          $ref: '#/components/schemas/StatValue'
+        top10:
+          $ref: '#/components/schemas/StatValue'
+        kd:
+          $ref: '#/components/schemas/StatValue'
+        winRatio:
+          $ref: '#/components/schemas/StatValue'
+        matches:
+          $ref: '#/components/schemas/StatValue'
+        kills:
+          $ref: '#/components/schemas/StatValue'
+        minutesPlayed:
+          $ref: '#/components/schemas/StatValue'
+    PlayerProfile:
+      type: object
+      description: Fortnite player profile with lifetime and per-mode statistics.
+      properties:
+        accountId:
+          type: string
+          format: uuid
+          description: Epic Games account UUID.
+          example: 4735ce91-3292-4caf-8a5b-17789b40f79c
+        platformId:
+          type: integer
+          description: Numeric platform identifier (5 = PC/Epic, 1 = PSN, 2 = Xbox Live).
+          example: 5
+        platformName:
+          type: string
+          description: Platform short code (`pc`, `psn`, `xbl`).
+          example: pc
+        platformNameLong:
+          type: string
+          description: Human-readable platform name.
+          example: PC / Epic Games
+        epicUserHandle:
+          type: string
+          description: Epic Games display name.
+          example: Ninja
+        stats:
+          type: object
+          description: Per-mode stat blocks keyed by mode identifier.
+          additionalProperties:
+            $ref: '#/components/schemas/StatBlock'
+        lifeTimeStats:
+          type: array
+          description: Lifetime statistic key/value pairs.
+          items:
+            $ref: '#/components/schemas/StatLine'
+        recentMatches:
+          type: array
+          description: Recent match summary entries.
+          items:
+            $ref: '#/components/schemas/MatchSummary'
+      required:
+      - accountId
+      - epicUserHandle
+      - platformName
     MatchSummary:
       type: object
       description: Summary of a recent match.
@@ -375,62 +431,6 @@ components:
           format: date-time
           description: Timestamp the match summary was recorded.
           example: '2026-05-29T18:42:11Z'
-    PlayerProfile:
-      type: object
-      description: Fortnite player profile with lifetime and per-mode statistics.
-      properties:
-        accountId:
-          type: string
-          format: uuid
-          description: Epic Games account UUID.
-          example: 4735ce91-3292-4caf-8a5b-17789b40f79c
-        platformId:
-          type: integer
-          description: Numeric platform identifier (5 = PC/Epic, 1 = PSN, 2 = Xbox Live).
-          example: 5
-        platformName:
-          type: string
-          description: Platform short code (`pc`, `psn`, `xbl`).
-          example: pc
-        platformNameLong:
-          type: string
-          description: Human-readable platform name.
-          example: PC / Epic Games
-        epicUserHandle:
-          type: string
-          description: Epic Games display name.
-          example: Ninja
-        stats:
-          type: object
-          description: Per-mode stat blocks keyed by mode identifier.
-          additionalProperties:
-            $ref: '#/components/schemas/StatBlock'
-        lifeTimeStats:
-          type: array
-          description: Lifetime statistic key/value pairs.
-          items:
-            $ref: '#/components/schemas/StatLine'
-        recentMatches:
-          type: array
-          description: Recent match summary entries.
-          items:
-            $ref: '#/components/schemas/MatchSummary'
-      required:
-      - accountId
-      - epicUserHandle
-      - platformName
-    StatLine:
-      type: object
-      description: A single lifetime stat key/value pair.
-      properties:
-        key:
-          type: string
-          description: Stat key (e.g., `Wins`, `Top 10`, `Kills`).
-          example: Wins
-        value:
-          type: string
-          description: Stat value as a string.
-          example: '247'
   securitySchemes:
     trnApiKey:
       type: apiKey

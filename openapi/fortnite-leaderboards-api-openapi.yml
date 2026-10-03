@@ -123,6 +123,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Error:
+      type: object
+      description: Standard error response body.
+      properties:
+        error:
+          type: string
+          description: Short machine-readable error code.
+          example: unauthorized
+        message:
+          type: string
+          description: Human-readable error description.
+          example: Missing or invalid TRN-Api-Key header.
     LeaderboardEntry:
       type: object
       description: A single leaderboard ranking row.
@@ -152,18 +164,6 @@ components:
           type: string
           description: Display value of the stat being ranked.
           example: '247'
-    Error:
-      type: object
-      description: Standard error response body.
-      properties:
-        error:
-          type: string
-          description: Short machine-readable error code.
-          example: unauthorized
-        message:
-          type: string
-          description: Human-readable error description.
-          example: Missing or invalid TRN-Api-Key header.
   securitySchemes:
     trnApiKey:
       type: apiKey
