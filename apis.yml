@@ -46,12 +46,13 @@ x-type: company
 x-tier: 3
 x-tier-reason: bulk-registered-from-public-apis
 tags:
-  - Games And Comics
   - Public APIs
   - Fortnite
   - Player Statistics
   - Esports
   - Tracker Network
+  - Gaming
+  - Video Games
 apis:
 - aid: fortnite:fortnite-challenges-api
   name: Fortnite Tracker Challenges API
@@ -208,3 +209,5 @@ solutions:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-tags-removed:
+- Games And Comics
