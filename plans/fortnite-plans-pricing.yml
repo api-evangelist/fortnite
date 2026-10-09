@@ -1,3 +1,8 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (dated 2026-05-30 by the file itself), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
+generated: '2026-05-30'
 specification: API Commons Plans
 specificationVersion: '0.1'
 schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
@@ -80,3 +85,28 @@ plans:
     elements:
       - name: Negotiated higher per-second rate limit
       - name: Direct contact with Tracker Network support
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  units:
+  - request
+  plans:
+  - name: Free
+    access: freemium
+    model: metered
+    model_how: derived
+    units:
+    - request
+    periods:
+    - month
+    - second
+  - name: Rate Limit Uplift
+    access: enterprise
+    model: metered
+    model_how: derived
+    units:
+    - request
+    periods:
+    - second
