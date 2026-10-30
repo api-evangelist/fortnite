@@ -1,4 +1,4 @@
-# Fortnite Tracker (fortnite)
+# Fortnite Tracker
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,174 +66,185 @@
 
 Fortnite Tracker, by Tracker Network, exposes a small REST API surface (api.fortnitetracker.com/v1) covering player profile lifetime stats, regional leaderboards, competitive power rankings, the rotating in-game store, and the weekly challenges feed for Fortnite. Authentication is a single TRN-Api-Key header obtained from the Fortnite Tracker site. The service has reached a silent end-of-life in recent years (some endpoints are intermittently unavailable) but remains the canonical community profile of how Tracker Network packages Epic Games' Fortnite telemetry as a developer API.
 
-**URL:** [Visit APIs.json URL](https://fortnitetracker.com/site-api)
+**Areas:** Public APIs · Fortnite · Player Statistics · Esports · Tracker Network · Gaming · Video Games
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Fortnite Tracker on APIs.io
 
-## Tags:
+Everything profiled for Fortnite Tracker is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/fortnite/](https://apis.io/providers/fortnite/)** — or go straight to one of the APIs or properties below.
 
- - Games And Comics, Public APIs, Fortnite, Player Statistics, Esports, Tracker Network
+### APIs (5)
 
-## Timestamps
+- [Fortnite Tracker Challenges API](https://apis.io/apis/fortnite/fortnite-challenges-api/) — Current Battle Pass weekly challenges.
+- [Fortnite Tracker Leaderboards API](https://apis.io/apis/fortnite/fortnite-leaderboards-api/) — Top-player leaderboards by platform and region.
+- [Fortnite Tracker Power Rankings API](https://apis.io/apis/fortnite/fortnite-power-rankings-api/) — Competitive Fortnite power rankings across professional events.
+- [Fortnite Tracker Profile API](https://apis.io/apis/fortnite/fortnite-profile-api/) — Per-player Fortnite lifetime and per-mode statistics.
+- [Fortnite Tracker Store API](https://apis.io/apis/fortnite/fortnite-store-api/) — Current Fortnite in-game store rotation.
 
-- **Created:** 2026-05-28
-- **Modified:** 2026-05-30
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Fortnite Tracker
+#### Agentic access (1)
 
-REST API exposing Fortnite player profiles, leaderboards, power rankings, store rotation, and challenges. All endpoints live under https://api.fortnitetracker.com/v1 and require a TRN-Api-Key header.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-**Human URL:** [https://fortnitetracker.com/site-api](https://fortnitetracker.com/site-api)
+- [Fortnite Agentic Access](https://apis.io/agentic-access/fortnite/fortnite-agentic-access/)
 
-#### Tags:
+#### JSON Schema (10)
 
- - Games And Comics, Fortnite, Player Statistics
+The data models the API reads and writes.
 
-#### Properties
+- [Challenge](https://apis.io/schemas/fortnite/fortnite-tracker-challenge/)
+- [LeaderboardEntry](https://apis.io/schemas/fortnite/fortnite-tracker-leaderboard-entry/)
+- [MatchSummary](https://apis.io/schemas/fortnite/fortnite-tracker-match-summary/)
+- [PlayerProfile](https://apis.io/schemas/fortnite/fortnite-tracker-player-profile/)
+- [PowerRankingDetail](https://apis.io/schemas/fortnite/fortnite-tracker-power-ranking-detail/)
+- [PowerRankingEntry](https://apis.io/schemas/fortnite/fortnite-tracker-power-ranking-entry/)
+- [StatBlock](https://apis.io/schemas/fortnite/fortnite-tracker-stat-block/)
+- [StatLine](https://apis.io/schemas/fortnite/fortnite-tracker-stat-line/)
+- [StatValue](https://apis.io/schemas/fortnite/fortnite-tracker-stat-value/)
+- [StoreItem](https://apis.io/schemas/fortnite/fortnite-tracker-store-item/)
 
-- [Documentation](https://fortnitetracker.com/site-api)
-- [SignUp](https://fortnitetracker.com/site-api/create)
-- [OpenAPI](openapi/fortnite-tracker.yaml)
-- [NaftikoCapability — Profile](capabilities/fortnite-tracker-profile.yaml)
-- [NaftikoCapability — Leaderboards](capabilities/fortnite-tracker-leaderboards.yaml)
-- [NaftikoCapability — Power Rankings](capabilities/fortnite-tracker-power-rankings.yaml)
-- [NaftikoCapability — Store](capabilities/fortnite-tracker-store.yaml)
-- [NaftikoCapability — Challenges](capabilities/fortnite-tracker-challenges.yaml)
+#### JSON Structure (10)
 
-## Common Properties
+Data models expressed in JSON Structure.
+
+- [Fortnite Tracker Challenge Structure](https://apis.io/json-structure/fortnite/fortnite-tracker-challenge-structure/)
+- [Fortnite Tracker Leaderboard Entry Structure](https://apis.io/json-structure/fortnite/fortnite-tracker-leaderboard-entry-structure/)
+- [Fortnite Tracker Match Summary Structure](https://apis.io/json-structure/fortnite/fortnite-tracker-match-summary-structure/)
+- [Fortnite Tracker Player Profile Structure](https://apis.io/json-structure/fortnite/fortnite-tracker-player-profile-structure/)
+- [Fortnite Tracker Power Ranking Detail Structure](https://apis.io/json-structure/fortnite/fortnite-tracker-power-ranking-detail-structure/)
+- [Fortnite Tracker Power Ranking Entry Structure](https://apis.io/json-structure/fortnite/fortnite-tracker-power-ranking-entry-structure/)
+- [Fortnite Tracker Stat Block Structure](https://apis.io/json-structure/fortnite/fortnite-tracker-stat-block-structure/)
+- [Fortnite Tracker Stat Line Structure](https://apis.io/json-structure/fortnite/fortnite-tracker-stat-line-structure/)
+- [Fortnite Tracker Stat Value Structure](https://apis.io/json-structure/fortnite/fortnite-tracker-stat-value-structure/)
+- [Fortnite Tracker Store Item Structure](https://apis.io/json-structure/fortnite/fortnite-tracker-store-item-structure/)
+
+#### JSON-LD (1)
+
+Linked-data contexts for the provider's vocabulary.
+
+- [Fortnite Tracker Context](https://apis.io/jsonld/fortnite/fortnite-tracker-context/)
+
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [Fortnite Vocabulary](https://apis.io/vocabularies/fortnite/fortnite-vocabulary/)
+
+#### Examples (10)
+
+Example requests and responses.
+
+- [Fortnite Tracker Challenge Example](https://apis.io/examples/fortnite/fortnite-tracker-challenge-example/)
+- [Fortnite Tracker Leaderboard Entry Example](https://apis.io/examples/fortnite/fortnite-tracker-leaderboard-entry-example/)
+- [Fortnite Tracker Match Summary Example](https://apis.io/examples/fortnite/fortnite-tracker-match-summary-example/)
+- [Fortnite Tracker Player Profile Example](https://apis.io/examples/fortnite/fortnite-tracker-player-profile-example/)
+- [Fortnite Tracker Power Ranking Detail Example](https://apis.io/examples/fortnite/fortnite-tracker-power-ranking-detail-example/)
+- [Fortnite Tracker Power Ranking Entry Example](https://apis.io/examples/fortnite/fortnite-tracker-power-ranking-entry-example/)
+- [Fortnite Tracker Stat Block Example](https://apis.io/examples/fortnite/fortnite-tracker-stat-block-example/)
+- [Fortnite Tracker Stat Line Example](https://apis.io/examples/fortnite/fortnite-tracker-stat-line-example/)
+- [Fortnite Tracker Stat Value Example](https://apis.io/examples/fortnite/fortnite-tracker-stat-value-example/)
+- [Fortnite Tracker Store Item Example](https://apis.io/examples/fortnite/fortnite-tracker-store-item-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [Fortnite Tracker Challenges API](https://apis.io/collections/fortnite/open-fortnite-challenges-api/)
+- [Fortnite Tracker Challenges Leaderboards API](https://apis.io/collections/fortnite/open-fortnite-leaderboards-api/)
+- [Fortnite Tracker Challenges Power Rankings API](https://apis.io/collections/fortnite/open-fortnite-power-rankings-api/)
+- [Fortnite Tracker Challenges Profile API](https://apis.io/collections/fortnite/open-fortnite-profile-api/)
+- [Fortnite Tracker Challenges Store API](https://apis.io/collections/fortnite/open-fortnite-store-api/)
+
+#### Governance rules (2)
+
+Spectral rulesets for the provider's contracts.
+
+- [Fortnite Tracker — jsonschema rules](https://apis.io/rules/fortnite/fortnite-jsonschema-spectral-rules/)
+- [Fortnite Tracker API Rules](https://apis.io/rules/fortnite/fortnite-spectral-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Fortnite Authentication](https://apis.io/security/fortnite/fortnite-authentication/)
+- [Fortnite Domain Security](https://apis.io/security/fortnite/fortnite-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Fortnite Plans Pricing](https://apis.io/plans/fortnite/fortnite-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Fortnite Rate Limits](https://apis.io/rate-limits/fortnite/fortnite-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Fortnite Finops](https://apis.io/finops/fortnite/fortnite-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://fortnitetracker.com/site-api)
-- [PublicAPIsListing](https://github.com/public-apis/public-apis)
-- [GitHubOrganization](https://github.com/TrackerNetwork)
-- [DeveloperPortal](https://tracker.gg/developers)
-- [Plans](plans/fortnite-plans-pricing.yml)
-- [RateLimits](rate-limits/fortnite-rate-limits.yml)
-- [FinOps](finops/fortnite-finops.yml)
-- [Rules](rules/fortnite-spectral-rules.yml)
-- [Vocabulary](vocabulary/fortnite-vocabulary.yaml)
-- [JSONLD](json-ld/fortnite-tracker-context.jsonld)
+- [GitHub](https://github.com/TrackerNetwork)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Player Lifetime Stats | Lifetime aggregate Battle Royale statistics (matches, wins, kills, K/D, score) per platform and username. |
-| Regional Leaderboards | Top players by platform and region across global, NA, EU, and OCE cohorts. |
-| Power Rankings | Competitive power rankings tracking professional Fortnite players' point totals across events. |
-| Store Rotation | Snapshot of the rotating in-game item shop (daily and weekly storefronts) with prices in vBucks. |
-| Weekly Challenges | Current Battle Pass weekly challenges list with completion criteria and rewards. |
+**Kin Score 27.7** — thin · rubric 0.24.0 · scored 2026-10-17
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 21.7 |
+| Contract governance | 27.3 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 18.4 |
 
-| Name | Description |
-|------|-------------|
-| Competitive Esports Dashboards | Aggregate professional player power-ranking standings into competitive Fortnite leaderboard sites and event broadcast graphics. |
-| Player Profile Widgets | Embed lifetime player stat cards into community sites, Discord bots, and streaming overlays. |
-| Store Tracking Bots | Poll the store endpoint on a schedule to notify players when specific cosmetics or returning skins appear in the daily rotation. |
+**Agent readiness 33.2** — agent-ready
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
 
-| Name | Description |
-|------|-------------|
-| Epic Games Fortnite | Upstream source of all player telemetry; Tracker Network ingests Epic's player data and exposes a developer surface on top of it. |
-| Discord Bots | Common consumer of the profile and store endpoints to render player cards and shop rotations in Discord servers. |
-| Streaming Overlays | OBS and Streamlabs overlay widgets pull live stats from the profile endpoint during Fortnite streams. |
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
 
-## Solutions
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/fortnite/](https://apis.io/providers/fortnite/).
 
-| Name | Description |
-|------|-------------|
-| Tracker Network Site Family | fortnitetracker.com is one of several Tracker Network properties (overwatch.tracker.gg, apex.tracker.gg, valorant.tracker.gg) that wrap game-publisher telemetry behind a uniform TRN-Api-Key surface. |
+## How this profile is made
 
-## Artifacts
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-Machine-readable API specifications organized by format.
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Fortnite Tracker: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### OpenAPI
+## Open an issue
 
-- [Fortnite Tracker API](openapi/fortnite-tracker.yaml) — 7 operations across 5 tags (Profile, Leaderboards, Power Rankings, Store, Challenges); v1 surface with TRN-Api-Key header auth.
-
-### JSON Schema
-
-- [Challenge](json-schema/fortnite-tracker-challenge-schema.json)
-- [LeaderboardEntry](json-schema/fortnite-tracker-leaderboard-entry-schema.json)
-- [MatchSummary](json-schema/fortnite-tracker-match-summary-schema.json)
-- [PlayerProfile](json-schema/fortnite-tracker-player-profile-schema.json)
-- [PowerRankingDetail](json-schema/fortnite-tracker-power-ranking-detail-schema.json)
-- [PowerRankingEntry](json-schema/fortnite-tracker-power-ranking-entry-schema.json)
-- [StatBlock](json-schema/fortnite-tracker-stat-block-schema.json)
-- [StatLine](json-schema/fortnite-tracker-stat-line-schema.json)
-- [StatValue](json-schema/fortnite-tracker-stat-value-schema.json)
-- [StoreItem](json-schema/fortnite-tracker-store-item-schema.json)
-
-### JSON Structure
-
-- [Challenge](json-structure/fortnite-tracker-challenge-structure.json)
-- [LeaderboardEntry](json-structure/fortnite-tracker-leaderboard-entry-structure.json)
-- [MatchSummary](json-structure/fortnite-tracker-match-summary-structure.json)
-- [PlayerProfile](json-structure/fortnite-tracker-player-profile-structure.json)
-- [PowerRankingDetail](json-structure/fortnite-tracker-power-ranking-detail-structure.json)
-- [PowerRankingEntry](json-structure/fortnite-tracker-power-ranking-entry-structure.json)
-- [StatBlock](json-structure/fortnite-tracker-stat-block-structure.json)
-- [StatLine](json-structure/fortnite-tracker-stat-line-structure.json)
-- [StatValue](json-structure/fortnite-tracker-stat-value-structure.json)
-- [StoreItem](json-structure/fortnite-tracker-store-item-structure.json)
-
-### JSON-LD
-
-- [Fortnite Tracker Context](json-ld/fortnite-tracker-context.jsonld) — 9 type declarations and 56 property terms aligned with schema.org and Tracker Network's `ft:` namespace.
-
-### Examples
-
-- [Challenge](examples/fortnite-tracker-challenge-example.json)
-- [LeaderboardEntry](examples/fortnite-tracker-leaderboard-entry-example.json)
-- [MatchSummary](examples/fortnite-tracker-match-summary-example.json)
-- [PlayerProfile](examples/fortnite-tracker-player-profile-example.json)
-- [PowerRankingDetail](examples/fortnite-tracker-power-ranking-detail-example.json)
-- [PowerRankingEntry](examples/fortnite-tracker-power-ranking-entry-example.json)
-- [StatBlock](examples/fortnite-tracker-stat-block-example.json)
-- [StatLine](examples/fortnite-tracker-stat-line-example.json)
-- [StatValue](examples/fortnite-tracker-stat-value-example.json)
-- [StoreItem](examples/fortnite-tracker-store-item-example.json)
-
-## Capabilities
-
-Naftiko capabilities organized as one self-contained file per OpenAPI tag, each declaring both a REST and an MCP exposer.
-
-### Fortnite Tracker
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Profile](capabilities/fortnite-tracker-profile.yaml) | fortnite-tracker | 2 | community-developer, esports-analyst |
-| [Leaderboards](capabilities/fortnite-tracker-leaderboards.yaml) | fortnite-tracker | 1 | community-developer, esports-analyst |
-| [Power Rankings](capabilities/fortnite-tracker-power-rankings.yaml) | fortnite-tracker | 2 | esports-analyst, broadcast-producer |
-| [Store](capabilities/fortnite-tracker-store.yaml) | fortnite-tracker | 1 | community-developer, cosmetics-collector |
-| [Challenges](capabilities/fortnite-tracker-challenges.yaml) | fortnite-tracker | 1 | community-developer, casual-player |
-
-## Vocabulary
-
-- [Fortnite Vocabulary](vocabulary/fortnite-vocabulary.yaml) — Unified taxonomy mapping 5 resources, 2 actions, 5 workflows, and 5 personas across operational (OpenAPI) and capability (Naftiko) dimensions.
-
-## Rules
-
-- [Fortnite Tracker Spectral Rules](rules/fortnite-spectral-rules.yml) — 39 rules across 12 categories enforcing Fortnite Tracker API conventions (kebab-case paths, camelCase operationIds, TRN-Api-Key header auth, /v1 versioning).
-
-## Plans
-
-- [Fortnite Plans & Pricing](plans/fortnite-plans-pricing.yml) — Free tier (single key-gated tier) + Rate Limit Uplift via Tracker Network support.
-
-## Rate Limits
-
-- [Fortnite Rate Limits](rate-limits/fortnite-rate-limits.yml) — 1 request per 2 seconds per TRN-Api-Key; HTTP 429 on overage; discretionary key revocation policy.
-
-## FinOps
-
-- [Fortnite FinOps](finops/fortnite-finops.yml) — FOCUS 1.3-aligned FinOps profile; free tier with self-instrumented usage telemetry and per-key allocation.
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/fortnite/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
